@@ -116,7 +116,8 @@ def validate_llm_output(raw_json: str) -> Tuple[LLMOutput | None, list[str]]:
                 f"Liq ~{liq_dist_pct:.1f}% from entry, "
                 f"stop at {stop_dist_pct*100:.2f}% ({liq_dist_pct - stop_dist_pct*100:.1f}% buffer)"
             )
-
+        # Note: confidence was auto-corrected by Pydantic model validator
+        # Log if LLM's original confidence differed significantly
         # R:R hard gate: if < 1.5, downgrade to warning
         if setup.risk.rr_to_tp1 < 1.5:
             errors.append(

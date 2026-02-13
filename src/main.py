@@ -39,6 +39,25 @@ log = logging.getLogger("main")
 _running = True
 
 
+def _load_previous_analysis() -> dict | None:
+    """Load the most recent LLM output for anchoring."""
+    log_path = config.DB_PATH.parent.parent / "logs" / "llm_outputs.jsonl"
+    if not log_path.exists():
+        return None
+    try:
+        with open(log_path, "r") as f:
+            lines = f.readlines()
+        if not lines:
+            return None
+        for line in reversed(lines):
+            line = line.strip()
+            if line:
+                return json.loads(line)
+    except Exception as e:
+        log.warning(f"Could not load previous analysis: {e}")
+    return None
+
+
 def _handle_sigint(sig, frame):
     global _running
     _running = False
@@ -63,7 +82,6 @@ def cmd_collect(args: argparse.Namespace) -> None:
             count = get_snapshot_count(conn)
             elapsed = time.time() - t0
 
-            # Compact log line
             prices = "  ".join(
                 f"{sym}={snapshot['assets'].get(sym, {}).get('mid', '?')}"
                 for sym in config.ASSETS
@@ -75,7 +93,6 @@ def cmd_collect(args: argparse.Namespace) -> None:
         except Exception as e:
             log.error(f"Collection error: {e}", exc_info=True)
 
-        # Sleep remaining time
         elapsed = time.time() - t0
         sleep_time = max(0, interval - elapsed)
         if _running and sleep_time > 0:
@@ -96,11 +113,25 @@ def cmd_analyze(args: argparse.Namespace) -> None:
         conn.close()
         return
 
-    # Fetch recent snapshots (up to 60 for ~1h of history)
     snapshots = get_latest_snapshots(conn, n=60)
     log.info(f"Loaded {len(snapshots)} snapshots (total in DB: {count})")
 
-    # Build Market State
+    # Cooldown check
+    prev = _load_previous_analysis()
+    if prev and prev.get("timestamp"):
+        try:
+            prev_dt = datetime.fromisoformat(prev["timestamp"])
+            now = datetime.now(timezone.utc)
+            minutes_since = (now - prev_dt).total_seconds() / 60
+            if minutes_since < 30 and not args.dry_run:
+                log.warning(
+                    f"Last analysis was {minutes_since:.0f}min ago. "
+                    f"Running again in a range market generates noise. "
+                    f"Consider waiting at least 30min between calls."
+                )
+        except Exception:
+            pass
+
     market_state = build_market_state(snapshots)
     if not market_state:
         print("Failed to build Market State from snapshots.")
@@ -115,10 +146,8 @@ def cmd_analyze(args: argparse.Namespace) -> None:
         conn.close()
         return
 
-    # Print market state summary
     print_market_state(market_state)
 
-    # Call LLM
     try:
         llm = get_llm_client()
     except ValueError as e:
@@ -128,15 +157,25 @@ def cmd_analyze(args: argparse.Namespace) -> None:
 
     state_json = json.dumps(market_state.model_dump(), default=str)
 
+    # Load previous analysis for anchoring
+    prev_analysis = _load_previous_analysis()
+    if prev_analysis:
+        anchored_state = (
+            f"{state_json}\n\n"
+            f"PREVIOUS ANALYSIS (from {prev_analysis.get('timestamp', 'unknown')}):\n"
+            f"{prev_analysis.get('raw', '')}"
+        )
+    else:
+        anchored_state = state_json
+
     try:
-        raw_response = llm.analyze(state_json, SYSTEM_PROMPT)
+        raw_response = llm.analyze(anchored_state, SYSTEM_PROMPT)
     except Exception as e:
         log.error(f"LLM call failed: {e}")
         print(f"LLM call failed: {e}")
         conn.close()
         return
 
-    # Validate
     output, errors = validate_llm_output(raw_response)
 
     if output is None:
@@ -147,15 +186,12 @@ def cmd_analyze(args: argparse.Namespace) -> None:
         conn.close()
         return
 
-    # Display
     print_setups(output, errors)
 
-    # Log raw output for review
     log_path = config.DB_PATH.parent.parent / "logs" / "llm_outputs.jsonl"
     log_path.parent.mkdir(parents=True, exist_ok=True)
     with open(log_path, "a") as f:
-        import json as _json
-        f.write(_json.dumps({
+        f.write(json.dumps({
             "timestamp": output.timestamp,
             "raw": raw_response,
             "errors": errors,

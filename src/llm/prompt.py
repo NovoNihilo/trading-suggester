@@ -64,6 +64,8 @@ RISK RULES (non-negotiable):
 CONFIDENCE SCORING (0-100, weighted sum of exactly 10 criteria):
 Be STRICT and HONEST. A total confidence above 60 should be uncommon. Above 70 is rare.
 After scoring each criterion, compute the WEIGHTED SUM and put that exact number as "confidence".
+The "confidence" field will be auto-computed server-side from your raw scores.
+You may set it to 0 or any placeholder — it will be overwritten.
 
 Weights reflect importance for 2-12h conditional bracket orders:
 
@@ -90,14 +92,6 @@ Weights reflect importance for 2-12h conditional bracket orders:
    Same caveat: point-in-time data, low predictive value for multi-hour holds.
 10. No landmines (0-10, WEIGHT 1.0) — Data fresh, no extreme vol spike,
     no extreme funding, no obvious news risk. Clean = 8-10.
-
-CONFIDENCE CALCULATION:
-confidence = round(sum(score_i * weight_i) for all 10 criteria)
-Maximum possible = 10 * (2.0+1.5+1.5+1.5+1.0+0.5+0.5+0.25+0.25+1.0) = 10 * 10.0 = 100
-
-In confidence_breakdown, report the RAW score (0-10) for each criterion.
-The "confidence" field will be auto-computed server-side from your raw scores.
-You may set it to 0 or any placeholder — it will be overwritten.
 
 OUTPUT SCHEMA — return EXACTLY this structure:
 {
@@ -157,4 +151,16 @@ RULES:
 - Sum of all setups' risk_pct_equity must not exceed total risk limit.
 - Do not hallucinate levels — use ONLY levels from the Market State key_levels.
 - Double-check your position sizing arithmetic before returning.
-- Return ONLY the JSON object. No markdown fences. No explanation text."""
+- Return ONLY the JSON object. No markdown fences. No explanation text.
+
+CONSISTENCY RULES:
+- If a PREVIOUS ANALYSIS is provided below, you MUST address it:
+  - If market conditions have NOT materially changed (price moved < 0.5%, regime same),
+    you should generally MAINTAIN the same setups unless a specific invalidation was hit.
+  - If you change direction on an asset, you MUST score "Regime alignment" lower (max 5)
+    to reflect the ambiguity that caused the flip.
+  - "Material change" means: price crossed a key level, regime changed, or an invalidation
+    from the previous setup was triggered.
+  - In a range/chop regime, prefer NO_TRADE (playbook E) over low-conviction directional bets.
+    A range with no level test in progress should default to NO_TRADE.
+- If NO previous analysis is provided, analyze fresh."""
