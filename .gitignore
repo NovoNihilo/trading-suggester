@@ -1,0 +1,39 @@
+# Environment / secrets — NEVER COMMIT
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual env
+.venv/
+venv/
+env/
+
+# Data
+data/*.db
+data/*.db-journal
+
+# Logs
+logs/*.log
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# VSCode
+.vscode/settings.json
+.vscode/launch.json
+
+# IDE
+.idea/
+*.swp
+*.swo
+*~
