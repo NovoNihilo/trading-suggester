@@ -33,6 +33,7 @@ logging.basicConfig(
     format="%(asctime)s %(levelname)-5s %(name)s: %(message)s",
     datefmt="%H:%M:%S",
 )
+logging.getLogger("httpx").setLevel(logging.WARNING)
 log = logging.getLogger("main")
 
 _running = True

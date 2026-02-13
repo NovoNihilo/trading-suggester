@@ -1,18 +1,11 @@
 """Feature engine: converts raw snapshots → structured MarketState.
 
-Takes the last N snapshots from SQLite and computes:
-- Returns (1m, 5m, 15m approximations from snapshot cadence)
-- ATR proxy from 15m candles
-- Key levels (day hi/lo, prior day hi/lo)
-- Orderbook features (spread, depth, imbalance)
-- Funding/OI
-- Flow proxy (orderbook imbalance as stand-in for aggressive flow)
+V2: Multi-timeframe candles, floor pivots, funding trend, proper prior-day levels.
 """
 
 from __future__ import annotations
 
 import logging
-from datetime import datetime, timezone
 
 from src.config import (
     ASSETS,
@@ -38,10 +31,7 @@ log = logging.getLogger(__name__)
 
 
 def build_market_state(snapshots: list[dict]) -> MarketState | None:
-    """Build MarketState from recent snapshots (newest-first order).
-
-    Needs at least 1 snapshot. More snapshots = better return estimates.
-    """
+    """Build MarketState from recent snapshots (newest-first order)."""
     if not snapshots:
         log.error("No snapshots available")
         return None
@@ -78,225 +68,258 @@ def build_market_state(snapshots: list[dict]) -> MarketState | None:
 def _build_asset_state(
     symbol: str, ts: str, data: dict, snapshots: list[dict]
 ) -> AssetState | None:
-    """Build AssetState for a single asset."""
     mark = data.get("mark") or data.get("mid")
     mid = data.get("mid") or mark
     if not mark or not mid:
         return None
 
-    # --- Price ---
     price = PriceData(mark=mark, mid=mid, last=mid)
-
-    # --- Bar stats from snapshot history ---
-    bar_stats = _compute_bar_stats(symbol, snapshots)
-
-    # --- Key levels from candles ---
-    key_levels = _compute_key_levels(symbol, data, snapshots)
-
-    # --- Orderbook ---
+    bar_stats = _compute_bar_stats(symbol, data, snapshots)
+    key_levels = _compute_key_levels(symbol, data)
     orderbook = _compute_orderbook_state(data.get("orderbook"), mid)
 
-    # --- Flow (use orderbook imbalance as proxy) ---
-    flow = FlowData(
-        aggressive_buy_ratio=None,
-        signed_volume_delta=None,
-    )
+    # Flow proxy from orderbook imbalance
+    flow = FlowData(aggressive_buy_ratio=None, signed_volume_delta=None)
     if orderbook:
-        # Rough proxy: imbalance > 0 = more bids = buyers
-        ratio = 0.5 + (orderbook.imbalance * 0.5)  # map [-1,1] → [0,1]
-        ratio = max(0.0, min(1.0, ratio))
+        ratio = max(0.0, min(1.0, 0.5 + (orderbook.imbalance * 0.5)))
         flow = FlowData(aggressive_buy_ratio=round(ratio, 3), signed_volume_delta=None)
 
-    # --- Funding / OI ---
-    funding_oi = FundingOI(
-        funding_rate=data.get("funding") or 0.0,
-        open_interest=data.get("open_interest") or 0.0,
-        oi_delta_1h=_compute_oi_delta(symbol, snapshots),
-    )
+    funding_oi = _compute_funding_oi(symbol, data, snapshots)
 
-    # Default orderbook if None
     if orderbook is None:
         orderbook = OrderbookState(
-            spread_bps=0,
-            bid_depth_01pct=0,
-            ask_depth_01pct=0,
-            bid_depth_05pct=0,
-            ask_depth_05pct=0,
-            imbalance=0,
-            best_bid=mid,
-            best_ask=mid,
+            spread_bps=0, bid_depth_01pct=0, ask_depth_01pct=0,
+            bid_depth_05pct=0, ask_depth_05pct=0, imbalance=0,
+            best_bid=mid, best_ask=mid,
         )
 
     return AssetState(
-        symbol=symbol,
-        timestamp=ts,
-        price=price,
-        bar_stats=bar_stats,
-        key_levels=key_levels,
-        orderbook=orderbook,
-        flow=flow,
-        funding_oi=funding_oi,
+        symbol=symbol, timestamp=ts, price=price, bar_stats=bar_stats,
+        key_levels=key_levels, orderbook=orderbook, flow=flow, funding_oi=funding_oi,
     )
 
 
-def _compute_bar_stats(symbol: str, snapshots: list[dict]) -> BarStats:
-    """Compute return approximations from snapshot mid prices."""
+# ---------- BAR STATS ----------
+
+def _compute_bar_stats(symbol: str, data: dict, snapshots: list[dict]) -> BarStats:
+    """Compute returns from snapshot history + ATR from multi-TF candles."""
+    # Returns from snapshot mids (60s apart)
     mids = []
     for snap in snapshots:
-        asset = snap.get("assets", {}).get(symbol, {})
-        m = asset.get("mid")
+        m = snap.get("assets", {}).get(symbol, {}).get("mid")
         if m:
             mids.append(m)
 
-    if len(mids) < 2:
-        return BarStats()
+    ret_1m = ret_5m = ret_15m = None
+    if len(mids) >= 2:
+        current = mids[0]
+        def _ret(idx):
+            i = min(idx, len(mids) - 1)
+            return round((current - mids[i]) / mids[i] * 100, 4) if mids[i] else None
+        ret_1m = _ret(1)
+        ret_5m = _ret(5)
+        ret_15m = _ret(15)
 
-    current = mids[0]
+    # Returns from candle closes for longer TFs
+    ret_1h = _return_from_candles(data.get("candles_1h", []), 1)
+    ret_4h = _return_from_candles(data.get("candles_4h", []), 1)
 
-    def _ret(idx: int) -> float | None:
-        if idx < len(mids) and mids[idx] != 0:
-            return round((current - mids[idx]) / mids[idx] * 100, 4)
+    # ATR from each timeframe
+    atr_15m = _compute_atr(data.get("candles_15m", []), 14)
+    atr_1h = _compute_atr(data.get("candles_1h", []), 14)
+    atr_4h = _compute_atr(data.get("candles_4h", []), 14)
+
+    return BarStats(
+        ret_1m=ret_1m, ret_5m=ret_5m, ret_15m=ret_15m,
+        ret_1h=ret_1h, ret_4h=ret_4h,
+        atr_15m=atr_15m, atr_1h=atr_1h, atr_4h=atr_4h,
+    )
+
+
+def _return_from_candles(candles: list[dict], periods_back: int) -> float | None:
+    """Return % change from N candles back to latest."""
+    if len(candles) < periods_back + 1:
         return None
-
-    # Snapshots are 60s apart, so index 1 ≈ 1m, 5 ≈ 5m, 15 ≈ 15m
-    ret_1m = _ret(1)
-    ret_5m = _ret(min(5, len(mids) - 1))
-    ret_15m = _ret(min(15, len(mids) - 1))
-
-    # ATR proxy from 15m candles in latest snapshot
-    atr = _compute_atr_from_candles(symbol, snapshots[0])
-
-    return BarStats(ret_1m=ret_1m, ret_5m=ret_5m, ret_15m=ret_15m, atr_15m=atr)
-
-
-def _compute_atr_from_candles(symbol: str, snap: dict) -> float | None:
-    """Compute ATR(14) from 15m candles stored in the snapshot."""
-    asset = snap.get("assets", {}).get(symbol, {})
-    candles = asset.get("candles", [])
-    if not candles or len(candles) < 5:
+    current = float(candles[-1].get("c", 0))
+    prev = float(candles[-(periods_back + 1)].get("c", 0))
+    if not current or not prev:
         return None
+    return round((current - prev) / prev * 100, 4)
 
+
+def _compute_atr(candles: list[dict], period: int = 14) -> float | None:
+    """Compute ATR from candle data."""
+    if not candles or len(candles) < 3:
+        return None
     trs = []
-    for c in candles[-14:]:
-        h = float(c.get("h", 0))
-        l = float(c.get("l", 0))
-        o = float(c.get("o", 0))
-        if h and l:
-            trs.append(h - l)
-
+    for i, c in enumerate(candles[-period:]):
+        h, l = float(c.get("h", 0)), float(c.get("l", 0))
+        if not h or not l:
+            continue
+        if i > 0:
+            prev_c = float(candles[max(0, len(candles) - period + i - 1)].get("c", 0))
+            if prev_c:
+                tr = max(h - l, abs(h - prev_c), abs(l - prev_c))
+            else:
+                tr = h - l
+        else:
+            tr = h - l
+        trs.append(tr)
     if not trs:
         return None
     return round(sum(trs) / len(trs), 4)
 
 
-def _compute_key_levels(symbol: str, data: dict, snapshots: list[dict]) -> KeyLevels:
-    """Extract key levels from candle data and snapshot history."""
+# ---------- KEY LEVELS ----------
+
+def _compute_key_levels(symbol: str, data: dict) -> KeyLevels:
+    """Compute key levels from multi-TF candle data."""
     mid = data.get("mid") or data.get("mark") or 0
+    candles_15m = data.get("candles_15m", [])
+    candles_1d = data.get("candles_1d", [])
 
-    # Day high/low from candles
-    candles = data.get("candles", [])
-    day_high = mid
-    day_low = mid
-
-    if candles:
-        highs = [float(c.get("h", 0)) for c in candles if c.get("h")]
-        lows = [float(c.get("l", 0)) for c in candles if c.get("l")]
+    # Intraday high/low from 15m candles
+    day_high, day_low = mid, mid
+    if candles_15m:
+        highs = [float(c["h"]) for c in candles_15m if c.get("h")]
+        lows = [float(c["l"]) for c in candles_15m if c.get("l") and float(c["l"]) > 0]
         if highs:
             day_high = max(highs)
         if lows:
-            day_low = min(l for l in lows if l > 0)
+            day_low = min(lows)
 
-    # Prior day high/low: use prevDayPx as a rough reference
-    prev_day_px = data.get("prev_day_px")
+    # Prior day OHLC from daily candles
+    prior_day_high = prior_day_low = prior_day_close = None
+    pivot_pp = pivot_r1 = pivot_r2 = pivot_s1 = pivot_s2 = None
+    week_high = week_low = None
 
-    # VWAP approximation from candle volume-weighted average
-    vwap = _compute_vwap(candles)
+    if len(candles_1d) >= 2:
+        # Second-to-last daily candle = prior day
+        prev = candles_1d[-2]
+        prior_day_high = float(prev.get("h", 0)) or None
+        prior_day_low = float(prev.get("l", 0)) or None
+        prior_day_close = float(prev.get("c", 0)) or None
+
+        # Classic floor pivots: PP = (H + L + C) / 3
+        if prior_day_high and prior_day_low and prior_day_close:
+            pp = (prior_day_high + prior_day_low + prior_day_close) / 3
+            pivot_pp = round(pp, 2)
+            pivot_r1 = round(2 * pp - prior_day_low, 2)
+            pivot_s1 = round(2 * pp - prior_day_high, 2)
+            pivot_r2 = round(pp + (prior_day_high - prior_day_low), 2)
+            pivot_s2 = round(pp - (prior_day_high - prior_day_low), 2)
+
+    # Week high/low from all daily candles
+    if candles_1d:
+        week_highs = [float(c["h"]) for c in candles_1d if c.get("h")]
+        week_lows = [float(c["l"]) for c in candles_1d if c.get("l") and float(c["l"]) > 0]
+        if week_highs:
+            week_high = max(week_highs)
+        if week_lows:
+            week_low = min(week_lows)
+
+    # VWAP from 15m candles
+    vwap = _compute_vwap(candles_15m)
 
     return KeyLevels(
-        day_high=day_high,
-        day_low=day_low,
-        prior_day_high=None,  # Would need daily candles
-        prior_day_low=None,
-        vwap=vwap,
+        day_high=day_high, day_low=day_low,
+        prior_day_high=prior_day_high, prior_day_low=prior_day_low,
+        prior_day_close=prior_day_close, vwap=vwap,
+        pivot_pp=pivot_pp, pivot_r1=pivot_r1, pivot_r2=pivot_r2,
+        pivot_s1=pivot_s1, pivot_s2=pivot_s2,
+        week_high=week_high, week_low=week_low,
     )
 
 
 def _compute_vwap(candles: list[dict]) -> float | None:
-    """Simple VWAP from candle data."""
     if not candles:
         return None
-
     total_vp = 0.0
     total_v = 0.0
     for c in candles:
-        h = float(c.get("h", 0))
-        l = float(c.get("l", 0))
-        close = float(c.get("c", 0))
-        vol = float(c.get("v", 0))
+        h, l = float(c.get("h", 0)), float(c.get("l", 0))
+        close, vol = float(c.get("c", 0)), float(c.get("v", 0))
         if h and l and close and vol > 0:
-            typical = (h + l + close) / 3
-            total_vp += typical * vol
+            total_vp += ((h + l + close) / 3) * vol
             total_v += vol
-
     if total_v == 0:
         return None
     return round(total_vp / total_v, 2)
 
 
+# ---------- ORDERBOOK ----------
+
 def _compute_orderbook_state(book: dict | None, mid: float) -> OrderbookState | None:
-    """Parse orderbook into structured state."""
     if not book or not book.get("bids") or not book.get("asks"):
         return None
-
-    bids = book["bids"]
-    asks = book["asks"]
-
+    bids, asks = book["bids"], book["asks"]
     best_bid = bids[0]["px"] if bids else mid
     best_ask = asks[0]["px"] if asks else mid
+    spread_bps = round((best_ask - best_bid) / best_bid * 10000, 2) if best_bid > 0 else 0
 
-    spread_bps = 0.0
-    if best_bid > 0:
-        spread_bps = round((best_ask - best_bid) / best_bid * 10000, 2)
+    def _depth(levels, ref_px, pct):
+        return round(sum(l["sz"] * l["px"] for l in levels if abs(l["px"] - ref_px) / ref_px <= pct / 100), 2)
 
-    def _depth(levels: list[dict], ref_px: float, pct: float) -> float:
-        total = 0.0
-        for lvl in levels:
-            if abs(lvl["px"] - ref_px) / ref_px <= pct / 100:
-                total += lvl["sz"] * lvl["px"]  # notional
-        return round(total, 2)
-
-    bid_d01 = _depth(bids, best_bid, 0.1)
-    ask_d01 = _depth(asks, best_ask, 0.1)
-    bid_d05 = _depth(bids, best_bid, 0.5)
-    ask_d05 = _depth(asks, best_ask, 0.5)
-
+    bid_d01, ask_d01 = _depth(bids, best_bid, 0.1), _depth(asks, best_ask, 0.1)
+    bid_d05, ask_d05 = _depth(bids, best_bid, 0.5), _depth(asks, best_ask, 0.5)
     total_near = bid_d01 + ask_d01
-    imbalance = 0.0
-    if total_near > 0:
-        imbalance = round((bid_d01 - ask_d01) / total_near, 3)
+    imbalance = round((bid_d01 - ask_d01) / total_near, 3) if total_near > 0 else 0
 
     return OrderbookState(
-        spread_bps=spread_bps,
-        bid_depth_01pct=bid_d01,
-        ask_depth_01pct=ask_d01,
-        bid_depth_05pct=bid_d05,
-        ask_depth_05pct=ask_d05,
-        imbalance=imbalance,
-        best_bid=best_bid,
-        best_ask=best_ask,
+        spread_bps=spread_bps, bid_depth_01pct=bid_d01, ask_depth_01pct=ask_d01,
+        bid_depth_05pct=bid_d05, ask_depth_05pct=ask_d05, imbalance=imbalance,
+        best_bid=best_bid, best_ask=best_ask,
     )
 
 
-def _compute_oi_delta(symbol: str, snapshots: list[dict]) -> float | None:
-    """OI change over ~1h of snapshots (60 snapshots at 60s cadence)."""
-    if len(snapshots) < 2:
-        return None
+# ---------- FUNDING / OI ----------
 
-    latest_oi = snapshots[0].get("assets", {}).get(symbol, {}).get("open_interest")
-    # Look ~60 snapshots back for 1h
-    back_idx = min(60, len(snapshots) - 1)
-    old_oi = snapshots[back_idx].get("assets", {}).get(symbol, {}).get("open_interest")
+def _compute_funding_oi(symbol: str, data: dict, snapshots: list[dict]) -> FundingOI:
+    """Compute funding with trend from snapshot history."""
+    current_funding = data.get("funding") or 0.0
+    current_oi = data.get("open_interest") or 0.0
 
-    if latest_oi is not None and old_oi is not None:
-        return round(latest_oi - old_oi, 2)
-    return None
+    # OI delta from ~1h ago
+    oi_delta = None
+    if len(snapshots) >= 2:
+        back_idx = min(60, len(snapshots) - 1)
+        old_oi = snapshots[back_idx].get("assets", {}).get(symbol, {}).get("open_interest")
+        if old_oi is not None:
+            oi_delta = round(current_oi - old_oi, 2)
+
+    # Funding from ~1h ago
+    funding_1h_ago = None
+    if len(snapshots) >= 2:
+        back_idx = min(60, len(snapshots) - 1)
+        funding_1h_ago = snapshots[back_idx].get("assets", {}).get(symbol, {}).get("funding")
+
+    # Classify funding trend
+    funding_trend = _classify_funding_trend(current_funding, funding_1h_ago)
+
+    return FundingOI(
+        funding_rate=current_funding,
+        open_interest=current_oi,
+        oi_delta_1h=oi_delta,
+        funding_1h_ago=funding_1h_ago,
+        funding_trend=funding_trend,
+    )
+
+
+def _classify_funding_trend(current: float, hour_ago: float | None) -> str:
+    """Classify funding trend for the LLM."""
+    # Extreme thresholds (annualized ~100%+)
+    if current > 0.01:
+        return "extreme_long"
+    if current < -0.01:
+        return "extreme_short"
+
+    if hour_ago is None:
+        return "stable"
+
+    delta = current - hour_ago
+    if abs(delta) < 0.0001:
+        return "stable"
+    elif delta > 0:
+        return "rising"
+    else:
+        return "falling"

@@ -8,40 +8,65 @@ from src.models.market_state import MarketState
 
 
 def print_market_state(state: MarketState) -> None:
-    """Print compact Market State summary."""
-    print(f"\n{'='*60}")
+    print(f"\n{'='*70}")
     print(f"  MARKET STATE  |  {state.timestamp}")
-    print(f"{'='*60}")
+    print(f"{'='*70}")
 
     for a in state.assets:
         spread = a.orderbook.spread_bps
         imb = a.orderbook.imbalance
         print(
-            f"  {a.symbol:>5}  "
+            f"\n  {a.symbol:>5}  "
             f"mid={a.price.mid:>10,.2f}  "
             f"mark={a.price.mark:>10,.2f}  "
             f"spread={spread:.1f}bps  "
             f"imb={imb:+.2f}"
         )
+
+        kl = a.key_levels
         print(
-            f"         "
-            f"dayH={a.key_levels.day_high:>10,.2f}  "
-            f"dayL={a.key_levels.day_low:>10,.2f}  "
-            f"vwap={a.key_levels.vwap or 0:>10,.2f}"
+            f"         dayH={kl.day_high:>10,.2f}  "
+            f"dayL={kl.day_low:>10,.2f}  "
+            f"vwap={kl.vwap or 0:>10,.2f}"
         )
-        rets = a.bar_stats
+        if kl.prior_day_high:
+            print(
+                f"         pdH={kl.prior_day_high:>11,.2f}  "
+                f"pdL={kl.prior_day_low or 0:>11,.2f}  "
+                f"pdC={kl.prior_day_close or 0:>11,.2f}"
+            )
+        if kl.pivot_pp:
+            print(
+                f"         PP={kl.pivot_pp:>12,.2f}  "
+                f"R1={kl.pivot_r1:>11,.2f}  "
+                f"S1={kl.pivot_s1:>11,.2f}"
+            )
+            print(
+                f"         R2={kl.pivot_r2:>12,.2f}  "
+                f"S2={kl.pivot_s2:>11,.2f}"
+            )
+        if kl.week_high:
+            print(
+                f"         wkH={kl.week_high:>11,.2f}  "
+                f"wkL={kl.week_low or 0:>11,.2f}"
+            )
+
+        b = a.bar_stats
         print(
-            f"         "
-            f"ret1m={_pct(rets.ret_1m)}  "
-            f"ret5m={_pct(rets.ret_5m)}  "
-            f"ret15m={_pct(rets.ret_15m)}  "
-            f"atr15m={rets.atr_15m or 0:.2f}"
+            f"         ret: 1m={_pct(b.ret_1m)} 5m={_pct(b.ret_5m)} "
+            f"15m={_pct(b.ret_15m)} 1h={_pct(b.ret_1h)} 4h={_pct(b.ret_4h)}"
         )
         print(
-            f"         "
-            f"funding={a.funding_oi.funding_rate:+.6f}  "
-            f"OI={a.funding_oi.open_interest:,.0f}  "
-            f"OIΔ1h={a.funding_oi.oi_delta_1h or 0:+,.0f}"
+            f"         atr: 15m={b.atr_15m or 0:>8.2f}  "
+            f"1h={b.atr_1h or 0:>8.2f}  "
+            f"4h={b.atr_4h or 0:>8.2f}"
+        )
+
+        f = a.funding_oi
+        print(
+            f"         funding={f.funding_rate:+.6f} ({f.funding_trend or '?'})  "
+            f"OI={f.open_interest:,.0f}  "
+            f"OIΔ1h={f.oi_delta_1h or 0:+,.0f}"
         )
 
     rc = state.risk_context
@@ -49,15 +74,14 @@ def print_market_state(state: MarketState) -> None:
           f"max/trade=${rc.max_loss_per_trade_usd:,.0f}  "
           f"max/total=${rc.max_total_risk_usd:,.0f}  "
           f"lev={rc.min_leverage}-{rc.max_leverage}x")
-    print(f"{'='*60}\n")
+    print(f"{'='*70}\n")
 
 
 def print_setups(output: LLMOutput, errors: list[str]) -> None:
-    """Print ranked trade setups."""
-    print(f"\n{'='*60}")
+    print(f"\n{'='*70}")
     print(f"  TRADE PLAN  |  {output.timestamp}")
     print(f"  Regime: {output.regime} — {output.regime_note}")
-    print(f"{'='*60}")
+    print(f"{'='*70}")
 
     if output.no_trade_reason:
         print(f"\n  ⚠ NO TRADE: {output.no_trade_reason}\n")
@@ -66,17 +90,15 @@ def print_setups(output: LLMOutput, errors: list[str]) -> None:
         _print_setup(s)
 
     if errors:
-        print(f"\n{'─'*60}")
+        print(f"\n{'─'*70}")
         print(f"  ⚠ VALIDATION ISSUES:")
         for e in errors:
             print(f"    • {e}")
-        print(f"{'─'*60}")
-
+        print(f"{'─'*70}")
     print()
 
 
 def _print_setup(s) -> None:
-    """Print a single setup."""
     if s.direction == "no_trade":
         print(f"\n  #{s.rank} {'NO TRADE':>10}  playbook={s.playbook}  "
               f"conf={s.confidence}/100")
@@ -118,7 +140,6 @@ def _print_setup(s) -> None:
 
 
 def print_market_state_json(state: MarketState) -> None:
-    """Print full Market State as formatted JSON (for dry-run)."""
     print(json.dumps(state.model_dump(), indent=2, default=str))
 
 
