@@ -80,6 +80,12 @@ def cmd_collect(args: argparse.Namespace) -> None:
             snapshot = collect_snapshot(client)
             store_snapshot(conn, snapshot)
             count = get_snapshot_count(conn)
+
+            # Track intraday signals
+            from src.features.signals import track_signals
+            prev_snaps = get_latest_snapshots(conn, n=2)
+            prev_snap = prev_snaps[1] if len(prev_snaps) >= 2 else None
+            track_signals(snapshot, prev_snap)
             elapsed = time.time() - t0
 
             prices = "  ".join(
@@ -159,14 +165,25 @@ def cmd_analyze(args: argparse.Namespace) -> None:
 
     # Load previous analysis for anchoring
     prev_analysis = _load_previous_analysis()
+
+    # Load intraday signals
+    from src.features.signals import load_todays_signals
+    signals = load_todays_signals(max_signals=30)
+
+    anchored_state = state_json
+
+    if signals:
+        signals_text = json.dumps(signals, default=str)
+        anchored_state += (
+            f"\n\nINTRADAY SIGNALS (objective events detected today):\n"
+            f"{signals_text}"
+        )
+
     if prev_analysis:
-        anchored_state = (
-            f"{state_json}\n\n"
-            f"PREVIOUS ANALYSIS (from {prev_analysis.get('timestamp', 'unknown')}):\n"
+        anchored_state += (
+            f"\n\nPREVIOUS ANALYSIS (from {prev_analysis.get('timestamp', 'unknown')}):\n"
             f"{prev_analysis.get('raw', '')}"
         )
-    else:
-        anchored_state = state_json
 
     try:
         raw_response = llm.analyze(anchored_state, SYSTEM_PROMPT)

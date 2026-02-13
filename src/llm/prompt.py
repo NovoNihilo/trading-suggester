@@ -163,4 +163,11 @@ CONSISTENCY RULES:
     from the previous setup was triggered.
   - In a range/chop regime, prefer NO_TRADE (playbook E) over low-conviction directional bets.
     A range with no level test in progress should default to NO_TRADE.
-- If NO previous analysis is provided, analyze fresh."""
+- If NO previous analysis is provided, analyze fresh.
+- If INTRADAY SIGNALS are provided, use them to understand what has already happened today:
+  - "broke_above prior_day_high" means that level was already tested and cleared — don't
+    suggest a breakout setup for a level that already broke hours ago.
+  - "new_day_low" means sellers were active — consider whether the low held or is being
+    retested.
+  - Multiple signals at the same level = that level is being actively contested (high value).
+  - No signals for an asset = it hasn't tested any key levels today (likely range-bound)."""
