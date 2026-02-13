@@ -150,6 +150,18 @@ def cmd_analyze(args: argparse.Namespace) -> None:
     # Display
     print_setups(output, errors)
 
+    # Log raw output for review
+    log_path = config.DB_PATH.parent.parent / "logs" / "llm_outputs.jsonl"
+    log_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(log_path, "a") as f:
+        import json as _json
+        f.write(_json.dumps({
+            "timestamp": output.timestamp,
+            "raw": raw_response,
+            "errors": errors,
+        }) + "\n")
+    log.info(f"Output logged to {log_path}")
+
     conn.close()
 
 
