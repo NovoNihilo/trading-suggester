@@ -96,7 +96,8 @@ confidence = round(sum(score_i * weight_i) for all 10 criteria)
 Maximum possible = 10 * (2.0+1.5+1.5+1.5+1.0+0.5+0.5+0.25+0.25+1.0) = 10 * 10.0 = 100
 
 In confidence_breakdown, report the RAW score (0-10) for each criterion.
-The "confidence" field must equal the rounded weighted sum.
+The "confidence" field will be auto-computed server-side from your raw scores.
+You may set it to 0 or any placeholder — it will be overwritten.
 
 OUTPUT SCHEMA — return EXACTLY this structure:
 {
