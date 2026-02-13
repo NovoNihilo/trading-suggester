@@ -61,20 +61,42 @@ RISK RULES (non-negotiable):
 - Every setup MUST have: entry trigger, hard stop, TP ladder, time-cancel, time-stop
 - If data is insufficient, default to playbook E (NO_TRADE)
 
-CONFIDENCE SCORING (0-100, sum of exactly 10 criteria, 0-10 each):
-Be STRICT and HONEST. A score of 7+ requires strong evidence in the data.
-A total confidence above 60 should be uncommon. Above 70 is rare.
-After scoring each criterion, ADD THE 10 NUMBERS and put that exact sum as "confidence".
-1. Regime alignment with playbook (does current regime match the playbook's ideal condition?)
-2. Clean level proximity (is price actually near a real level from key_levels?)
-3. Volatility suitability (are targets achievable per ATR? is stop reasonable per ATR?)
-4. Orderbook health (spread < 2bps? depth adequate?)
-5. Orderbook signal (imbalance supports: >+0.15 for long, <-0.15 for short)
-6. Flow confirmation (aggressive_buy_ratio >0.55 for long, <0.45 for short)
-7. Funding/OI alignment (funding_trend not extreme against, OI delta supportive)
-8. Multi-TF alignment (are 1m/5m/15m/1h/4h returns all in the same direction?)
-9. Risk/reward quality (>= 2.0R to TP1 preferred, >= 1.5R minimum)
-10. No landmines (data fresh, no extreme vol spike, no extreme funding)
+CONFIDENCE SCORING (0-100, weighted sum of exactly 10 criteria):
+Be STRICT and HONEST. A total confidence above 60 should be uncommon. Above 70 is rare.
+After scoring each criterion, compute the WEIGHTED SUM and put that exact number as "confidence".
+
+Weights reflect importance for 2-12h conditional bracket orders:
+
+1. Level quality (0-10, WEIGHT 2.0) — Is the trigger level structurally significant?
+   Confluent levels (pivot + prior day + round number) score 8-10.
+   Single reference level scores 5-7. Invented/arbitrary level scores 0-3.
+2. Risk/reward quality (0-10, WEIGHT 1.5) — R:R >= 3.0 scores 9-10. >= 2.0 scores 6-8.
+   >= 1.5 scores 4-5. Below 1.5 scores 0-3.
+3. Regime alignment (0-10, WEIGHT 1.5) — Does the regime match the playbook?
+   Trend + breakout/breakdown = high. Range + mean reversion = high.
+   Range + breakout = low. Chop + anything = low.
+4. Multi-TF alignment (0-10, WEIGHT 1.5) — Are 15m/1h/4h returns in the same direction
+   as the trade? All aligned = 8-10. Mixed = 4-6. Conflicting = 0-3.
+5. Volatility suitability (0-10, WEIGHT 1.0) — Are TPs achievable per ATR?
+   Is stop distance reasonable (0.3-1.0x 1h ATR)? TP1 within 1x 4h ATR?
+6. Funding/OI alignment (0-10, WEIGHT 0.5) — Funding trend not extreme against trade.
+   OI delta supportive (rising OI + breakout = good). Neutral = 5.
+7. Orderbook health (0-10, WEIGHT 0.5) — PASS/FAIL only: spread < 5bps and
+   depth adequate = 5. Otherwise 0. Don't over-score this.
+8. Orderbook signal (0-10, WEIGHT 0.25) — Imbalance supports direction.
+   Low weight because this changes every second. >+0.3 for long = 7.
+   Neutral = 5. Don't let this swing confidence significantly.
+9. Flow confirmation (0-10, WEIGHT 0.25) — Aggressive buy/sell ratio supports.
+   Same caveat: point-in-time data, low predictive value for multi-hour holds.
+10. No landmines (0-10, WEIGHT 1.0) — Data fresh, no extreme vol spike,
+    no extreme funding, no obvious news risk. Clean = 8-10.
+
+CONFIDENCE CALCULATION:
+confidence = round(sum(score_i * weight_i) for all 10 criteria)
+Maximum possible = 10 * (2.0+1.5+1.5+1.5+1.0+0.5+0.5+0.25+0.25+1.0) = 10 * 10.0 = 100
+
+In confidence_breakdown, report the RAW score (0-10) for each criterion.
+The "confidence" field must equal the rounded weighted sum.
 
 OUTPUT SCHEMA — return EXACTLY this structure:
 {

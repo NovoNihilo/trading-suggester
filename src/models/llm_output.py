@@ -99,10 +99,14 @@ class Setup(BaseModel):
 
     @model_validator(mode="after")
     def confidence_matches_breakdown(self) -> "Setup":
-        expected = sum(c.score for c in self.confidence_breakdown)
-        if self.confidence != expected:
+        weights = [2.0, 1.5, 1.5, 1.5, 1.0, 0.5, 0.5, 0.25, 0.25, 1.0]
+        raw_scores = [c.score for c in self.confidence_breakdown]
+        expected = round(sum(s * w for s, w in zip(raw_scores, weights)))
+        # Allow ±2 tolerance for rounding
+        if abs(self.confidence - expected) > 2:
             raise ValueError(
-                f"confidence={self.confidence} != sum of breakdown={expected}"
+                f"confidence={self.confidence} != weighted sum={expected} "
+                f"(scores={raw_scores}, weights={weights})"
             )
         return self
 
