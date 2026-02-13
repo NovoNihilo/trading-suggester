@@ -91,9 +91,16 @@ def print_setups(output: LLMOutput, errors: list[str]) -> None:
 
     if errors:
         print(f"\n{'─'*70}")
-        print(f"  ⚠ VALIDATION ISSUES:")
-        for e in errors:
-            print(f"    • {e}")
+        corrections = [e for e in errors if e.startswith("✓")]
+        real_errors = [e for e in errors if not e.startswith("✓")]
+        if corrections:
+            print(f"  ✓ AUTO-CORRECTIONS ({len(corrections)}):")
+            for c in corrections:
+                print(f"    {c}")
+        if real_errors:
+            print(f"  ⚠ ISSUES ({len(real_errors)}):")
+            for e in real_errors:
+                print(f"    • {e}")
         print(f"{'─'*70}")
     print()
 
