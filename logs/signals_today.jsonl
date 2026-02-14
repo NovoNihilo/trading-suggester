@@ -28,3 +28,5 @@
 {"ts": "2026-02-14T01:18:49.466905+00:00", "asset": "HYPE", "event": "new_day_high", "price": 32.0, "level_value": 31.97}
 {"ts": "2026-02-14T01:27:49.561997+00:00", "asset": "HYPE", "event": "new_day_high", "price": 31.98, "level_value": 31.97}
 {"ts": "2026-02-14T01:40:49.615351+00:00", "asset": "HYPE", "event": "new_day_high", "price": 32.14, "level_value": 32.13}
+{"ts": "2026-02-14T02:20:47.417928+00:00", "asset": "DOGE", "event": "new_day_low", "price": 0.1, "level_value": 0.1}
+{"ts": "2026-02-14T02:20:47.417928+00:00", "asset": "MON", "event": "broke_above", "level": "prior_day_close", "price": 0.02, "level_value": 0.022804}

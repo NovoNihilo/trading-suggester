@@ -7,6 +7,22 @@ from src.models.llm_output import LLMOutput
 from src.models.market_state import MarketState
 
 
+def _fmt_price(v: float) -> str:
+    """Dynamic price formatting — handles both BTC ($68000) and PEPE ($0.00001)."""
+    if v == 0:
+        return "0"
+    abs_v = abs(v)
+    if abs_v >= 100:
+        return f"{v:>10,.2f}"
+    elif abs_v >= 1:
+        return f"{v:>10,.4f}"
+    elif abs_v >= 0.01:
+        return f"{v:>10,.6f}"
+    else:
+        # Sub-cent assets like PEPE
+        return f"{v:>10.8f}"
+
+
 def print_market_state(state: MarketState) -> None:
     print(f"\n{'='*70}")
     print(f"  MARKET STATE  |  {state.timestamp}")
@@ -17,38 +33,38 @@ def print_market_state(state: MarketState) -> None:
         imb = a.orderbook.imbalance
         print(
             f"\n  {a.symbol:>5}  "
-            f"mid={a.price.mid:>10,.2f}  "
-            f"mark={a.price.mark:>10,.2f}  "
+            f"mid={_fmt_price(a.price.mid)}  "
+            f"mark={_fmt_price(a.price.mark)}  "
             f"spread={spread:.1f}bps  "
             f"imb={imb:+.2f}"
         )
 
         kl = a.key_levels
         print(
-            f"         dayH={kl.day_high:>10,.2f}  "
-            f"dayL={kl.day_low:>10,.2f}  "
-            f"vwap={kl.vwap or 0:>10,.2f}"
+            f"         dayH={_fmt_price(kl.day_high)}  "
+            f"dayL={_fmt_price(kl.day_low)}  "
+            f"vwap={_fmt_price(kl.vwap or 0)}"
         )
         if kl.prior_day_high:
             print(
-                f"         pdH={kl.prior_day_high:>11,.2f}  "
-                f"pdL={kl.prior_day_low or 0:>11,.2f}  "
-                f"pdC={kl.prior_day_close or 0:>11,.2f}"
+                f"         pdH={_fmt_price(kl.prior_day_high)}  "
+                f"pdL={_fmt_price(kl.prior_day_low or 0)}  "
+                f"pdC={_fmt_price(kl.prior_day_close or 0)}"
             )
         if kl.pivot_pp:
             print(
-                f"         PP={kl.pivot_pp:>12,.2f}  "
-                f"R1={kl.pivot_r1:>11,.2f}  "
-                f"S1={kl.pivot_s1:>11,.2f}"
+                f"         PP={_fmt_price(kl.pivot_pp)}  "
+                f"R1={_fmt_price(kl.pivot_r1)}  "
+                f"S1={_fmt_price(kl.pivot_s1)}"
             )
             print(
-                f"         R2={kl.pivot_r2:>12,.2f}  "
-                f"S2={kl.pivot_s2:>11,.2f}"
+                f"         R2={_fmt_price(kl.pivot_r2)}  "
+                f"S2={_fmt_price(kl.pivot_s2)}"
             )
         if kl.week_high:
             print(
-                f"         wkH={kl.week_high:>11,.2f}  "
-                f"wkL={kl.week_low or 0:>11,.2f}"
+                f"         wkH={_fmt_price(kl.week_high)}  "
+                f"wkL={_fmt_price(kl.week_low or 0)}"
             )
 
         b = a.bar_stats
