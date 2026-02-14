@@ -1,0 +1,29 @@
+{"ts": "2026-02-14T00:00:48.718920+00:00", "asset": "BTC", "event": "broke_below", "level": "prior_day_close", "price": 68809.5, "level_value": 68822.0}
+{"ts": "2026-02-14T00:00:48.718920+00:00", "asset": "ETH", "event": "broke_below", "level": "prior_day_close", "price": 2047.55, "level_value": 2047.6}
+{"ts": "2026-02-14T00:01:48.729180+00:00", "asset": "SOL", "event": "broke_below", "level": "prior_day_close", "price": 84.25, "level_value": 84.27}
+{"ts": "2026-02-14T00:01:48.729180+00:00", "asset": "HYPE", "event": "broke_below", "level": "prior_day_close", "price": 31.55, "level_value": 31.558}
+{"ts": "2026-02-14T00:02:48.739442+00:00", "asset": "HYPE", "event": "broke_above", "level": "prior_day_close", "price": 31.57, "level_value": 31.558}
+{"ts": "2026-02-14T00:03:48.749704+00:00", "asset": "BTC", "event": "broke_above", "level": "prior_day_close", "price": 68839.5, "level_value": 68822.0}
+{"ts": "2026-02-14T00:03:48.749704+00:00", "asset": "ETH", "event": "broke_above", "level": "prior_day_close", "price": 2047.95, "level_value": 2047.6}
+{"ts": "2026-02-14T00:05:48.770228+00:00", "asset": "SOL", "event": "broke_above", "level": "prior_day_close", "price": 84.28, "level_value": 84.27}
+{"ts": "2026-02-14T00:05:48.770228+00:00", "asset": "HYPE", "event": "broke_below", "level": "prior_day_close", "price": 31.55, "level_value": 31.558}
+{"ts": "2026-02-14T00:06:48.780486+00:00", "asset": "SOL", "event": "broke_below", "level": "prior_day_close", "price": 84.23, "level_value": 84.27}
+{"ts": "2026-02-14T00:07:48.790741+00:00", "asset": "BTC", "event": "broke_below", "level": "prior_day_close", "price": 68793.5, "level_value": 68822.0}
+{"ts": "2026-02-14T00:08:48.801004+00:00", "asset": "ETH", "event": "broke_below", "level": "prior_day_close", "price": 2047.25, "level_value": 2047.6}
+{"ts": "2026-02-14T00:15:48.873445+00:00", "asset": "BTC", "event": "broke_above", "level": "prior_day_close", "price": 68826.5, "level_value": 68822.0}
+{"ts": "2026-02-14T00:15:48.873445+00:00", "asset": "SOL", "event": "broke_above", "level": "prior_day_close", "price": 84.29, "level_value": 84.27}
+{"ts": "2026-02-14T00:17:48.893960+00:00", "asset": "BTC", "event": "broke_below", "level": "prior_day_close", "price": 68808.5, "level_value": 68822.0}
+{"ts": "2026-02-14T00:30:49.002681+00:00", "asset": "BTC", "event": "broke_above", "level": "prior_day_close", "price": 68890.5, "level_value": 68822.0}
+{"ts": "2026-02-14T00:31:49.012535+00:00", "asset": "ETH", "event": "broke_above", "level": "prior_day_close", "price": 2047.95, "level_value": 2047.6}
+{"ts": "2026-02-14T00:31:49.012535+00:00", "asset": "HYPE", "event": "broke_above", "level": "prior_day_close", "price": 31.61, "level_value": 31.558}
+{"ts": "2026-02-14T00:36:49.061828+00:00", "asset": "ETH", "event": "broke_below", "level": "prior_day_close", "price": 2046.55, "level_value": 2047.6}
+{"ts": "2026-02-14T00:39:49.089512+00:00", "asset": "HYPE", "event": "new_day_high", "price": 31.74, "level_value": 31.74}
+{"ts": "2026-02-14T00:41:49.109225+00:00", "asset": "ETH", "event": "broke_above", "level": "prior_day_close", "price": 2049.45, "level_value": 2047.6}
+{"ts": "2026-02-14T00:41:49.109225+00:00", "asset": "HYPE", "event": "new_day_high", "price": 31.78, "level_value": 31.74}
+{"ts": "2026-02-14T00:46:49.158504+00:00", "asset": "HYPE", "event": "new_day_high", "price": 31.81, "level_value": 31.79}
+{"ts": "2026-02-14T00:53:49.227520+00:00", "asset": "BTC", "event": "new_day_high", "price": 69079.5, "level_value": 69062.0}
+{"ts": "2026-02-14T00:56:49.254265+00:00", "asset": "BTC", "event": "new_day_high", "price": 69067.5, "level_value": 69062.0}
+{"ts": "2026-02-14T01:16:49.447306+00:00", "asset": "HYPE", "event": "new_day_high", "price": 31.97, "level_value": 31.97}
+{"ts": "2026-02-14T01:18:49.466905+00:00", "asset": "SOL", "event": "new_day_high", "price": 85.14, "level_value": 85.13}
+{"ts": "2026-02-14T01:18:49.466905+00:00", "asset": "HYPE", "event": "new_day_high", "price": 32.0, "level_value": 31.97}
+{"ts": "2026-02-14T01:27:49.561997+00:00", "asset": "HYPE", "event": "new_day_high", "price": 31.98, "level_value": 31.97}

@@ -10,12 +10,10 @@ class ConfidenceCriterion(BaseModel):
     criterion: str
     score: int
 
-    @field_validator("score")
-    @classmethod
-    def score_range(cls, v: int) -> int:
-        if not 0 <= v <= 10:
-            raise ValueError(f"Score must be 0-10, got {v}")
-        return v
+    @model_validator(mode="after")
+    def clamp_score(self) -> "ConfidenceCriterion":
+        self.score = max(0, min(10, self.score))
+        return self
 
 
 class EntryLevels(BaseModel):
@@ -90,12 +88,10 @@ class Setup(BaseModel):
             raise ValueError(f"Playbook must be A-E, got {v}")
         return v
 
-    @field_validator("direction")
+    @field_validator("score")
     @classmethod
-    def valid_direction(cls, v: str) -> str:
-        if v not in ("long", "short", "no_trade"):
-            raise ValueError(f"Direction must be long/short/no_trade, got {v}")
-        return v
+    def score_range(cls, v: int) -> int:
+        return max(0, min(10, v))
 
     @model_validator(mode="after")
     def confidence_matches_breakdown(self) -> "Setup":

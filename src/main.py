@@ -5,6 +5,7 @@ Commands:
     analyze           Run LLM analysis on current data
     analyze --dry-run Print Market State without calling LLM
     status            Show snapshot count and latest data age
+    signals           Show today's detected intraday signals
 """
 
 from __future__ import annotations
@@ -38,6 +39,9 @@ log = logging.getLogger("main")
 
 _running = True
 
+# Track the current day for signal reset
+_current_day: str | None = None
+
 
 def _load_previous_analysis() -> dict | None:
     """Load the most recent LLM output for anchoring."""
@@ -58,6 +62,19 @@ def _load_previous_analysis() -> dict | None:
     return None
 
 
+def _check_daily_reset() -> None:
+    """Reset signal log at the start of each new UTC day."""
+    global _current_day
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    if _current_day is None:
+        _current_day = today
+    elif today != _current_day:
+        from src.features.signals import reset_signals
+        reset_signals()
+        log.info(f"New day {today} — reset intraday signals")
+        _current_day = today
+
+
 def _handle_sigint(sig, frame):
     global _running
     _running = False
@@ -76,6 +93,9 @@ def cmd_collect(args: argparse.Namespace) -> None:
 
     while _running:
         try:
+            # Check for daily signal reset
+            _check_daily_reset()
+
             t0 = time.time()
             snapshot = collect_snapshot(client)
             store_snapshot(conn, snapshot)
@@ -246,6 +266,63 @@ def cmd_status(args: argparse.Namespace) -> None:
     conn.close()
 
 
+def cmd_signals(args: argparse.Namespace) -> None:
+    """Show today's detected intraday signals."""
+    from src.features.signals import load_todays_signals, SIGNALS_PATH
+
+    signals = load_todays_signals(max_signals=100)
+
+    if not signals:
+        print(f"\nNo signals detected today.")
+        print(f"Signals fire when price crosses key levels (prior day high/low/close,")
+        print(f"new intraday high/low, or >1% moves between snapshots).")
+        print(f"\nSignals file: {SIGNALS_PATH}")
+        print(f"File exists: {SIGNALS_PATH.exists()}")
+        if SIGNALS_PATH.exists():
+            import os
+            size = os.path.getsize(SIGNALS_PATH)
+            print(f"File size: {size} bytes")
+        return
+
+    # Group by asset
+    by_asset: dict[str, list[dict]] = {}
+    for s in signals:
+        asset = s.get("asset", "?")
+        by_asset.setdefault(asset, []).append(s)
+
+    print(f"\n{'='*70}")
+    print(f"  INTRADAY SIGNALS  |  {len(signals)} events today")
+    print(f"{'='*70}")
+
+    for asset in sorted(by_asset.keys()):
+        sigs = by_asset[asset]
+        print(f"\n  {asset}:")
+        for s in sigs:
+            ts = s.get("ts", "?")
+            # Parse to show just time
+            try:
+                dt = datetime.fromisoformat(ts)
+                time_str = dt.strftime("%H:%M:%S UTC")
+            except Exception:
+                time_str = ts[:19] if len(ts) > 19 else ts
+
+            event = s.get("event", "?")
+            level = s.get("level", "")
+            price = s.get("price", "?")
+            level_val = s.get("level_value", "")
+            pct = s.get("pct")
+
+            if pct is not None:
+                print(f"    {time_str}  {event}  {pct:+.2f}%  @ {price}")
+            elif level:
+                print(f"    {time_str}  {event} {level} ({level_val})  @ {price}")
+            else:
+                print(f"    {time_str}  {event}  @ {price}")
+
+    print(f"\n  File: {SIGNALS_PATH}")
+    print()
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         description="Trading Suggester V1",
@@ -262,6 +339,7 @@ def main() -> None:
     )
 
     sub.add_parser("status", help="Show collection status")
+    sub.add_parser("signals", help="Show today's intraday signals")
 
     args = parser.parse_args()
 
@@ -271,6 +349,8 @@ def main() -> None:
         cmd_analyze(args)
     elif args.command == "status":
         cmd_status(args)
+    elif args.command == "signals":
+        cmd_signals(args)
 
 
 if __name__ == "__main__":
