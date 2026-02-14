@@ -154,7 +154,7 @@ RULES:
 - Return ONLY the JSON object. No markdown fences. No explanation text.
 
 CONSISTENCY RULES:
-- If a PREVIOUS ANALYSIS is provided below, you MUST address it:
+- If a PREVIOUS ANALYSIS SUMMARY is provided, use it as CONTEXT, not a TEMPLATE:
   - If market conditions have NOT materially changed (price moved < 0.5%, regime same),
     you should generally MAINTAIN the same setups unless a specific invalidation was hit.
   - If you change direction on an asset, you MUST score "Regime alignment" lower (max 5)

@@ -88,7 +88,6 @@ class Setup(BaseModel):
             raise ValueError(f"Playbook must be A-E, got {v}")
         return v
 
-
     @model_validator(mode="after")
     def confidence_matches_breakdown(self) -> "Setup":
         """Auto-correct confidence to the deterministic weighted sum."""

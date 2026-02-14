@@ -199,11 +199,17 @@ def cmd_analyze(args: argparse.Namespace) -> None:
             f"{signals_text}"
         )
 
-    if prev_analysis:
+    # Build concise anchoring summary (replaces raw JSON dump)
+    from src.anchoring import build_anchoring_context
+    anchor_summary = build_anchoring_context(prev_analysis, signals)
+
+    if anchor_summary:
         anchored_state += (
-            f"\n\nPREVIOUS ANALYSIS (from {prev_analysis.get('timestamp', 'unknown')}):\n"
-            f"{prev_analysis.get('raw', '')}"
+            f"\n\nPREVIOUS ANALYSIS SUMMARY (do NOT copy — re-evaluate using current data):\n"
+            f"{anchor_summary}"
         )
+    else:
+        log.info("No anchoring context — fresh analysis")
 
     try:
         raw_response = llm.analyze(anchored_state, SYSTEM_PROMPT)

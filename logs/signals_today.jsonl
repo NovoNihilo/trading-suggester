@@ -27,3 +27,4 @@
 {"ts": "2026-02-14T01:18:49.466905+00:00", "asset": "SOL", "event": "new_day_high", "price": 85.14, "level_value": 85.13}
 {"ts": "2026-02-14T01:18:49.466905+00:00", "asset": "HYPE", "event": "new_day_high", "price": 32.0, "level_value": 31.97}
 {"ts": "2026-02-14T01:27:49.561997+00:00", "asset": "HYPE", "event": "new_day_high", "price": 31.98, "level_value": 31.97}
+{"ts": "2026-02-14T01:40:49.615351+00:00", "asset": "HYPE", "event": "new_day_high", "price": 32.14, "level_value": 32.13}
