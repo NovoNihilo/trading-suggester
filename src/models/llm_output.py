@@ -88,10 +88,6 @@ class Setup(BaseModel):
             raise ValueError(f"Playbook must be A-E, got {v}")
         return v
 
-    @field_validator("score")
-    @classmethod
-    def score_range(cls, v: int) -> int:
-        return max(0, min(10, v))
 
     @model_validator(mode="after")
     def confidence_matches_breakdown(self) -> "Setup":
