@@ -49,7 +49,7 @@ python -m src.main analyze --dry-run
 # Check how many snapshots are stored:
 python -m src.main status
 
-# Check if any signals occured today
+# Check if any signals occured today:
 python3 -m src.main signals
 ```
 
