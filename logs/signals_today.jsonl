@@ -30,3 +30,307 @@
 {"ts": "2026-02-14T01:40:49.615351+00:00", "asset": "HYPE", "event": "new_day_high", "price": 32.14, "level_value": 32.13}
 {"ts": "2026-02-14T02:20:47.417928+00:00", "asset": "DOGE", "event": "new_day_low", "price": 0.1, "level_value": 0.1}
 {"ts": "2026-02-14T02:20:47.417928+00:00", "asset": "MON", "event": "broke_above", "level": "prior_day_close", "price": 0.02, "level_value": 0.022804}
+{"ts": "2026-02-14T02:21:47.422343+00:00", "asset": "MON", "event": "broke_below", "level": "prior_day_close", "price": 0.02, "level_value": 0.022804}
+{"ts": "2026-02-14T02:23:47.507289+00:00", "asset": "MON", "event": "broke_above", "level": "prior_day_close", "price": 0.02, "level_value": 0.022804}
+{"ts": "2026-02-14T02:29:47.539110+00:00", "asset": "DOGE", "event": "new_day_low", "price": 0.1, "level_value": 0.1}
+{"ts": "2026-02-14T03:27:48.153983+00:00", "asset": "DOGE", "event": "broke_above", "level": "prior_day_close", "price": 0.1, "level_value": 0.096662}
+{"ts": "2026-02-14T03:35:48.238322+00:00", "asset": "SOL", "event": "new_day_high", "price": 85.16, "level_value": 85.16}
+{"ts": "2026-02-14T03:35:48.238322+00:00", "asset": "AVAX", "event": "new_day_high", "price": 9.22, "level_value": 9.22}
+{"ts": "2026-02-14T03:35:48.238322+00:00", "asset": "SUI", "event": "new_day_high", "price": 0.97, "level_value": 0.97}
+{"ts": "2026-02-14T03:35:48.238322+00:00", "asset": "MON", "event": "broke_below", "level": "prior_day_close", "price": 0.02, "level_value": 0.022804}
+{"ts": "2026-02-14T03:38:48.270092+00:00", "asset": "MON", "event": "broke_above", "level": "prior_day_close", "price": 0.02, "level_value": 0.022804}
+{"ts": "2026-02-14T03:41:48.301683+00:00", "asset": "SUI", "event": "new_day_high", "price": 0.97, "level_value": 0.97}
+{"ts": "2026-02-14T03:51:48.407004+00:00", "asset": "MON", "event": "broke_below", "level": "prior_day_close", "price": 0.02, "level_value": 0.022804}
+{"ts": "2026-02-14T03:52:48.417387+00:00", "asset": "MON", "event": "broke_above", "level": "prior_day_close", "price": 0.02, "level_value": 0.022804}
+{"ts": "2026-02-14T03:56:48.451041+00:00", "asset": "MON", "event": "broke_below", "level": "prior_day_close", "price": 0.02, "level_value": 0.022804}
+{"ts": "2026-02-14T03:58:48.465056+00:00", "asset": "MON", "event": "broke_above", "level": "prior_day_close", "price": 0.02, "level_value": 0.022804}
+{"ts": "2026-02-14T04:04:48.527298+00:00", "asset": "DOGE", "event": "broke_below", "level": "prior_day_close", "price": 0.1, "level_value": 0.096662}
+{"ts": "2026-02-14T04:07:48.540165+00:00", "asset": "MON", "event": "broke_below", "level": "prior_day_close", "price": 0.02, "level_value": 0.022804}
+{"ts": "2026-02-14T04:14:48.571485+00:00", "asset": "MON", "event": "broke_above", "level": "prior_day_close", "price": 0.02, "level_value": 0.022804}
+{"ts": "2026-02-14T04:17:48.602439+00:00", "asset": "HYPE", "event": "broke_below", "level": "prior_day_close", "price": 31.53, "level_value": 31.558}
+{"ts": "2026-02-14T04:18:48.612768+00:00", "asset": "HYPE", "event": "broke_above", "level": "prior_day_close", "price": 31.61, "level_value": 31.558}
+{"ts": "2026-02-14T04:21:48.643715+00:00", "asset": "HYPE", "event": "broke_below", "level": "prior_day_close", "price": 31.55, "level_value": 31.558}
+{"ts": "2026-02-14T04:21:48.643715+00:00", "asset": "XRP", "event": "new_day_high", "price": 1.42, "level_value": 1.42}
+{"ts": "2026-02-14T04:24:48.667159+00:00", "asset": "HYPE", "event": "broke_above", "level": "prior_day_close", "price": 31.59, "level_value": 31.558}
+{"ts": "2026-02-14T04:26:48.687807+00:00", "asset": "XRP", "event": "new_day_high", "price": 1.42, "level_value": 1.42}
+{"ts": "2026-02-14T04:26:48.687807+00:00", "asset": "DOGE", "event": "broke_above", "level": "prior_day_close", "price": 0.1, "level_value": 0.096662}
+{"ts": "2026-02-14T04:35:48.736755+00:00", "asset": "HYPE", "event": "broke_below", "level": "prior_day_close", "price": 31.54, "level_value": 31.558}
+{"ts": "2026-02-14T04:37:48.755821+00:00", "asset": "HYPE", "event": "new_day_low", "price": 31.41, "level_value": 31.45}
+{"ts": "2026-02-14T04:43:48.814150+00:00", "asset": "MON", "event": "new_day_high", "price": 0.02, "level_value": 0.02}
+{"ts": "2026-02-14T04:44:48.823857+00:00", "asset": "BTC", "event": "broke_below", "level": "prior_day_close", "price": 68805.5, "level_value": 68822.0}
+{"ts": "2026-02-14T05:00:48.988640+00:00", "asset": "DOGE", "event": "broke_below", "level": "prior_day_close", "price": 0.1, "level_value": 0.096662}
+{"ts": "2026-02-14T05:03:49.018922+00:00", "asset": "DOGE", "event": "broke_above", "level": "prior_day_close", "price": 0.1, "level_value": 0.096662}
+{"ts": "2026-02-14T05:09:49.079108+00:00", "asset": "DOGE", "event": "broke_below", "level": "prior_day_close", "price": 0.1, "level_value": 0.096662}
+{"ts": "2026-02-14T05:09:49.079108+00:00", "asset": "MON", "event": "new_day_high", "price": 0.02, "level_value": 0.02}
+{"ts": "2026-02-14T05:10:49.089138+00:00", "asset": "DOGE", "event": "broke_above", "level": "prior_day_close", "price": 0.1, "level_value": 0.096662}
+{"ts": "2026-02-14T05:11:49.099162+00:00", "asset": "BTC", "event": "broke_above", "level": "prior_day_close", "price": 68822.5, "level_value": 68822.0}
+{"ts": "2026-02-14T05:18:49.169345+00:00", "asset": "HYPE", "event": "broke_above", "level": "prior_day_close", "price": 31.57, "level_value": 31.558}
+{"ts": "2026-02-14T05:19:49.179378+00:00", "asset": "HYPE", "event": "broke_below", "level": "prior_day_close", "price": 31.55, "level_value": 31.558}
+{"ts": "2026-02-14T05:22:49.209453+00:00", "asset": "HYPE", "event": "broke_above", "level": "prior_day_close", "price": 31.59, "level_value": 31.558}
+{"ts": "2026-02-14T05:31:49.325229+00:00", "asset": "HYPE", "event": "broke_below", "level": "prior_day_close", "price": 31.55, "level_value": 31.558}
+{"ts": "2026-02-14T05:32:49.335689+00:00", "asset": "BTC", "event": "broke_below", "level": "prior_day_close", "price": 68814.5, "level_value": 68822.0}
+{"ts": "2026-02-14T05:32:49.335689+00:00", "asset": "HYPE", "event": "broke_above", "level": "prior_day_close", "price": 31.59, "level_value": 31.558}
+{"ts": "2026-02-14T05:35:49.366995+00:00", "asset": "HYPE", "event": "broke_below", "level": "prior_day_close", "price": 31.53, "level_value": 31.558}
+{"ts": "2026-02-14T05:36:49.377437+00:00", "asset": "HYPE", "event": "broke_above", "level": "prior_day_close", "price": 31.59, "level_value": 31.558}
+{"ts": "2026-02-14T05:36:49.377437+00:00", "asset": "DOGE", "event": "broke_below", "level": "prior_day_close", "price": 0.1, "level_value": 0.096662}
+{"ts": "2026-02-14T05:37:49.387870+00:00", "asset": "HYPE", "event": "broke_below", "level": "prior_day_close", "price": 31.51, "level_value": 31.558}
+{"ts": "2026-02-14T05:45:49.471400+00:00", "asset": "DOGE", "event": "broke_above", "level": "prior_day_close", "price": 0.1, "level_value": 0.096662}
+{"ts": "2026-02-14T05:53:49.555028+00:00", "asset": "XRP", "event": "new_day_low", "price": 1.41, "level_value": 1.41}
+{"ts": "2026-02-14T05:54:49.565472+00:00", "asset": "SUI", "event": "new_day_low", "price": 0.96, "level_value": 0.96}
+{"ts": "2026-02-14T05:55:49.568925+00:00", "asset": "SUI", "event": "broke_below", "level": "prior_day_close", "price": 0.96, "level_value": 0.96103}
+{"ts": "2026-02-14T05:56:49.574395+00:00", "asset": "HYPE", "event": "new_day_low", "price": 31.3, "level_value": 31.34}
+{"ts": "2026-02-14T05:58:49.590549+00:00", "asset": "HYPE", "event": "new_day_low", "price": 31.31, "level_value": 31.34}
+{"ts": "2026-02-14T06:03:49.639761+00:00", "asset": "SOL", "event": "new_day_low", "price": 84.52, "level_value": 84.56}
+{"ts": "2026-02-14T06:06:49.670929+00:00", "asset": "DOGE", "event": "broke_below", "level": "prior_day_close", "price": 0.1, "level_value": 0.096662}
+{"ts": "2026-02-14T06:08:49.691715+00:00", "asset": "BTC", "event": "new_day_low", "price": 68714.5, "level_value": 68750.0}
+{"ts": "2026-02-14T06:08:49.691715+00:00", "asset": "AVAX", "event": "broke_below", "level": "prior_day_close", "price": 9.14, "level_value": 9.1497}
+{"ts": "2026-02-14T06:08:49.691715+00:00", "asset": "AVAX", "event": "new_day_low", "price": 9.14, "level_value": 9.15}
+{"ts": "2026-02-14T06:08:49.691715+00:00", "asset": "SUI", "event": "new_day_low", "price": 0.96, "level_value": 0.96}
+{"ts": "2026-02-14T06:09:49.702140+00:00", "asset": "HYPE", "event": "new_day_low", "price": 31.27, "level_value": 31.28}
+{"ts": "2026-02-14T06:13:49.743687+00:00", "asset": "BTC", "event": "new_day_low", "price": 68741.5, "level_value": 68750.0}
+{"ts": "2026-02-14T06:14:49.754075+00:00", "asset": "DOGE", "event": "broke_above", "level": "prior_day_close", "price": 0.1, "level_value": 0.096662}
+{"ts": "2026-02-14T06:16:49.774827+00:00", "asset": "AVAX", "event": "broke_above", "level": "prior_day_close", "price": 9.16, "level_value": 9.1497}
+{"ts": "2026-02-14T06:17:49.785251+00:00", "asset": "DOGE", "event": "broke_below", "level": "prior_day_close", "price": 0.1, "level_value": 0.096662}
+{"ts": "2026-02-14T06:18:49.795794+00:00", "asset": "BTC", "event": "broke_above", "level": "prior_day_close", "price": 68822.5, "level_value": 68822.0}
+{"ts": "2026-02-14T06:18:49.795794+00:00", "asset": "DOGE", "event": "broke_above", "level": "prior_day_close", "price": 0.1, "level_value": 0.096662}
+{"ts": "2026-02-14T06:19:49.806173+00:00", "asset": "BTC", "event": "broke_below", "level": "prior_day_close", "price": 68821.5, "level_value": 68822.0}
+{"ts": "2026-02-14T06:20:49.816565+00:00", "asset": "MON", "event": "broke_below", "level": "prior_day_close", "price": 0.02, "level_value": 0.022804}
+{"ts": "2026-02-14T06:21:49.826948+00:00", "asset": "DOGE", "event": "broke_below", "level": "prior_day_close", "price": 0.1, "level_value": 0.096662}
+{"ts": "2026-02-14T06:23:49.847743+00:00", "asset": "AVAX", "event": "broke_below", "level": "prior_day_close", "price": 9.15, "level_value": 9.1497}
+{"ts": "2026-02-14T06:25:49.868506+00:00", "asset": "BTC", "event": "broke_above", "level": "prior_day_close", "price": 68861.5, "level_value": 68822.0}
+{"ts": "2026-02-14T06:25:49.868506+00:00", "asset": "AVAX", "event": "broke_above", "level": "prior_day_close", "price": 9.16, "level_value": 9.1497}
+{"ts": "2026-02-14T06:39:49.948816+00:00", "asset": "MON", "event": "new_day_low", "price": 0.02, "level_value": 0.02}
+{"ts": "2026-02-14T07:02:50.208819+00:00", "asset": "HYPE", "event": "broke_above", "level": "prior_day_close", "price": 31.6, "level_value": 31.558}
+{"ts": "2026-02-14T07:15:50.332927+00:00", "asset": "SUI", "event": "broke_above", "level": "prior_day_close", "price": 0.96, "level_value": 0.96103}
+{"ts": "2026-02-14T07:17:50.353665+00:00", "asset": "SUI", "event": "broke_below", "level": "prior_day_close", "price": 0.96, "level_value": 0.96103}
+{"ts": "2026-02-14T07:18:50.364044+00:00", "asset": "SUI", "event": "broke_above", "level": "prior_day_close", "price": 0.96, "level_value": 0.96103}
+{"ts": "2026-02-14T07:20:50.384781+00:00", "asset": "SUI", "event": "broke_below", "level": "prior_day_close", "price": 0.96, "level_value": 0.96103}
+{"ts": "2026-02-14T07:23:50.415990+00:00", "asset": "SUI", "event": "broke_above", "level": "prior_day_close", "price": 0.96, "level_value": 0.96103}
+{"ts": "2026-02-14T07:31:50.498989+00:00", "asset": "MON", "event": "broke_above", "level": "prior_day_close", "price": 0.02, "level_value": 0.022804}
+{"ts": "2026-02-14T07:32:50.468985+00:00", "asset": "MON", "event": "broke_below", "level": "prior_day_close", "price": 0.02, "level_value": 0.022804}
+{"ts": "2026-02-14T07:34:50.485715+00:00", "asset": "MON", "event": "broke_above", "level": "prior_day_close", "price": 0.02, "level_value": 0.022804}
+{"ts": "2026-02-14T07:35:50.495350+00:00", "asset": "MON", "event": "broke_below", "level": "prior_day_close", "price": 0.02, "level_value": 0.022804}
+{"ts": "2026-02-14T07:43:50.572127+00:00", "asset": "BTC", "event": "new_day_high", "price": 69070.5, "level_value": 68989.0}
+{"ts": "2026-02-14T07:46:50.601018+00:00", "asset": "BTC", "event": "new_day_high", "price": 69180.5, "level_value": 69177.0}
+{"ts": "2026-02-14T07:49:50.629875+00:00", "asset": "BTC", "event": "new_day_high", "price": 69199.5, "level_value": 69177.0}
+{"ts": "2026-02-14T07:49:50.629875+00:00", "asset": "MON", "event": "broke_above", "level": "prior_day_close", "price": 0.02, "level_value": 0.022804}
+{"ts": "2026-02-14T07:50:50.639517+00:00", "asset": "XRP", "event": "new_day_high", "price": 1.42, "level_value": 1.42}
+{"ts": "2026-02-14T07:50:50.639517+00:00", "asset": "MON", "event": "broke_below", "level": "prior_day_close", "price": 0.02, "level_value": 0.022804}
+{"ts": "2026-02-14T07:51:50.649156+00:00", "asset": "ETH", "event": "new_day_high", "price": 2059.15, "level_value": 2056.8}
+{"ts": "2026-02-14T07:51:50.649156+00:00", "asset": "LINK", "event": "new_day_high", "price": 8.88, "level_value": 8.87}
+{"ts": "2026-02-14T07:52:50.658782+00:00", "asset": "MON", "event": "broke_above", "level": "prior_day_close", "price": 0.02, "level_value": 0.022804}
+{"ts": "2026-02-14T07:53:50.668423+00:00", "asset": "MON", "event": "broke_below", "level": "prior_day_close", "price": 0.02, "level_value": 0.022804}
+{"ts": "2026-02-14T07:57:50.706946+00:00", "asset": "ETH", "event": "new_day_high", "price": 2057.05, "level_value": 2056.8}
+{"ts": "2026-02-14T08:01:50.745498+00:00", "asset": "BTC", "event": "new_day_high", "price": 69376.5, "level_value": 69330.0}
+{"ts": "2026-02-14T08:01:50.745498+00:00", "asset": "LINK", "event": "new_day_high", "price": 8.9, "level_value": 8.89}
+{"ts": "2026-02-14T08:02:50.765068+00:00", "asset": "ETH", "event": "new_day_high", "price": 2062.65, "level_value": 2059.7}
+{"ts": "2026-02-14T08:02:50.765068+00:00", "asset": "SOL", "event": "new_day_high", "price": 85.33, "level_value": 85.24}
+{"ts": "2026-02-14T08:06:50.821088+00:00", "asset": "BTC", "event": "broke_above", "level": "prior_day_high", "price": 69506.5, "level_value": 69456.0}
+{"ts": "2026-02-14T08:06:50.821088+00:00", "asset": "XRP", "event": "new_day_high", "price": 1.43, "level_value": 1.42}
+{"ts": "2026-02-14T08:06:50.821088+00:00", "asset": "DOGE", "event": "broke_above", "level": "prior_day_close", "price": 0.1, "level_value": 0.096662}
+{"ts": "2026-02-14T08:06:50.821088+00:00", "asset": "LINK", "event": "broke_above", "level": "prior_day_high", "price": 8.93, "level_value": 8.9064}
+{"ts": "2026-02-14T08:07:50.831340+00:00", "asset": "ETH", "event": "broke_above", "level": "prior_day_high", "price": 2074.45, "level_value": 2071.1}
+{"ts": "2026-02-14T08:07:50.831340+00:00", "asset": "SOL", "event": "broke_above", "level": "prior_day_high", "price": 85.7, "level_value": 85.575}
+{"ts": "2026-02-14T08:07:50.831340+00:00", "asset": "XRP", "event": "broke_above", "level": "prior_day_high", "price": 1.43, "level_value": 1.4271}
+{"ts": "2026-02-14T08:07:50.831340+00:00", "asset": "AVAX", "event": "new_day_high", "price": 9.23, "level_value": 9.22}
+{"ts": "2026-02-14T08:07:50.831340+00:00", "asset": "SUI", "event": "new_day_high", "price": 0.97, "level_value": 0.97}
+{"ts": "2026-02-14T08:11:50.872509+00:00", "asset": "MON", "event": "broke_above", "level": "prior_day_close", "price": 0.02, "level_value": 0.022804}
+{"ts": "2026-02-14T08:12:50.882793+00:00", "asset": "SUI", "event": "new_day_high", "price": 0.97, "level_value": 0.97}
+{"ts": "2026-02-14T08:14:50.903377+00:00", "asset": "ETH", "event": "broke_above", "level": "prior_day_high", "price": 2072.05, "level_value": 2071.1}
+{"ts": "2026-02-14T08:14:50.903377+00:00", "asset": "LINK", "event": "broke_above", "level": "prior_day_high", "price": 8.91, "level_value": 8.9064}
+{"ts": "2026-02-14T08:16:50.923958+00:00", "asset": "SOL", "event": "broke_above", "level": "prior_day_high", "price": 85.61, "level_value": 85.575}
+{"ts": "2026-02-14T08:17:50.934263+00:00", "asset": "LINK", "event": "broke_above", "level": "prior_day_high", "price": 8.91, "level_value": 8.9064}
+{"ts": "2026-02-14T08:17:50.934263+00:00", "asset": "MON", "event": "broke_below", "level": "prior_day_close", "price": 0.02, "level_value": 0.022804}
+{"ts": "2026-02-14T08:18:50.944554+00:00", "asset": "XRP", "event": "new_day_high", "price": 1.43, "level_value": 1.43}
+{"ts": "2026-02-14T08:23:50.996082+00:00", "asset": "LINK", "event": "broke_above", "level": "prior_day_high", "price": 8.91, "level_value": 8.9064}
+{"ts": "2026-02-14T08:24:51.006396+00:00", "asset": "MON", "event": "broke_above", "level": "prior_day_close", "price": 0.02, "level_value": 0.022804}
+{"ts": "2026-02-14T08:26:51.026968+00:00", "asset": "MON", "event": "broke_below", "level": "prior_day_close", "price": 0.02, "level_value": 0.022804}
+{"ts": "2026-02-14T08:27:51.037256+00:00", "asset": "LINK", "event": "broke_above", "level": "prior_day_high", "price": 8.91, "level_value": 8.9064}
+{"ts": "2026-02-14T08:30:51.068088+00:00", "asset": "LINK", "event": "broke_above", "level": "prior_day_high", "price": 8.91, "level_value": 8.9064}
+{"ts": "2026-02-14T08:31:51.078399+00:00", "asset": "BTC", "event": "broke_above", "level": "prior_day_high", "price": 69463.5, "level_value": 69456.0}
+{"ts": "2026-02-14T08:31:51.078399+00:00", "asset": "DOGE", "event": "new_day_high", "price": 0.1, "level_value": 0.1}
+{"ts": "2026-02-14T08:33:51.101279+00:00", "asset": "ETH", "event": "broke_above", "level": "prior_day_high", "price": 2072.75, "level_value": 2071.1}
+{"ts": "2026-02-14T08:33:51.101279+00:00", "asset": "SOL", "event": "broke_above", "level": "prior_day_high", "price": 85.66, "level_value": 85.575}
+{"ts": "2026-02-14T08:33:51.101279+00:00", "asset": "AVAX", "event": "new_day_high", "price": 9.25, "level_value": 9.25}
+{"ts": "2026-02-14T08:33:51.101279+00:00", "asset": "SUI", "event": "new_day_high", "price": 0.97, "level_value": 0.97}
+{"ts": "2026-02-14T08:35:51.122383+00:00", "asset": "AVAX", "event": "broke_above", "level": "prior_day_high", "price": 9.26, "level_value": 9.2555}
+{"ts": "2026-02-14T08:35:51.122383+00:00", "asset": "MON", "event": "broke_above", "level": "prior_day_close", "price": 0.02, "level_value": 0.022804}
+{"ts": "2026-02-14T08:36:51.132723+00:00", "asset": "XRP", "event": "new_day_high", "price": 1.44, "level_value": 1.44}
+{"ts": "2026-02-14T08:39:51.163773+00:00", "asset": "SOL", "event": "new_day_high", "price": 86.03, "level_value": 85.98}
+{"ts": "2026-02-14T08:40:51.174102+00:00", "asset": "HYPE", "event": "broke_below", "level": "prior_day_close", "price": 31.56, "level_value": 31.558}
+{"ts": "2026-02-14T08:42:51.194799+00:00", "asset": "SOL", "event": "new_day_high", "price": 86.02, "level_value": 85.98}
+{"ts": "2026-02-14T08:44:51.215503+00:00", "asset": "SOL", "event": "new_day_high", "price": 86.05, "level_value": 85.98}
+{"ts": "2026-02-14T08:44:51.215503+00:00", "asset": "HYPE", "event": "broke_above", "level": "prior_day_close", "price": 31.57, "level_value": 31.558}
+{"ts": "2026-02-14T08:44:51.215503+00:00", "asset": "LINK", "event": "new_day_high", "price": 8.97, "level_value": 8.96}
+{"ts": "2026-02-14T08:45:51.225935+00:00", "asset": "SOL", "event": "new_day_high", "price": 86.16, "level_value": 86.11}
+{"ts": "2026-02-14T08:45:51.225935+00:00", "asset": "XRP", "event": "new_day_high", "price": 1.44, "level_value": 1.44}
+{"ts": "2026-02-14T08:45:51.225935+00:00", "asset": "LINK", "event": "new_day_high", "price": 8.97, "level_value": 8.97}
+{"ts": "2026-02-14T08:45:51.225935+00:00", "asset": "SUI", "event": "new_day_high", "price": 0.98, "level_value": 0.98}
+{"ts": "2026-02-14T08:47:51.246648+00:00", "asset": "BTC", "event": "new_day_high", "price": 69761.5, "level_value": 69749.0}
+{"ts": "2026-02-14T08:48:51.257018+00:00", "asset": "SOL", "event": "new_day_high", "price": 86.12, "level_value": 86.11}
+{"ts": "2026-02-14T08:48:51.257018+00:00", "asset": "LINK", "event": "new_day_high", "price": 8.97, "level_value": 8.97}
+{"ts": "2026-02-14T08:48:51.257018+00:00", "asset": "SUI", "event": "new_day_high", "price": 0.98, "level_value": 0.98}
+{"ts": "2026-02-14T08:52:51.298679+00:00", "asset": "DOGE", "event": "new_day_high", "price": 0.1, "level_value": 0.1}
+{"ts": "2026-02-14T08:53:51.309026+00:00", "asset": "BTC", "event": "new_day_high", "price": 69795.5, "level_value": 69749.0}
+{"ts": "2026-02-14T08:53:51.309026+00:00", "asset": "XRP", "event": "new_day_high", "price": 1.44, "level_value": 1.44}
+{"ts": "2026-02-14T08:53:51.309026+00:00", "asset": "DOGE", "event": "broke_above", "level": "prior_day_high", "price": 0.1, "level_value": 0.09758}
+{"ts": "2026-02-14T08:54:51.319359+00:00", "asset": "SUI", "event": "new_day_high", "price": 0.98, "level_value": 0.98}
+{"ts": "2026-02-14T08:56:51.339995+00:00", "asset": "SOL", "event": "new_day_high", "price": 86.13, "level_value": 86.11}
+{"ts": "2026-02-14T08:58:51.360527+00:00", "asset": "BTC", "event": "new_day_high", "price": 69754.5, "level_value": 69749.0}
+{"ts": "2026-02-14T08:58:51.360527+00:00", "asset": "LINK", "event": "new_day_high", "price": 8.97, "level_value": 8.97}
+{"ts": "2026-02-14T09:00:51.381224+00:00", "asset": "SUI", "event": "new_day_high", "price": 0.98, "level_value": 0.98}
+{"ts": "2026-02-14T09:01:51.391562+00:00", "asset": "SUI", "event": "broke_above", "level": "prior_day_high", "price": 0.98, "level_value": 0.98432}
+{"ts": "2026-02-14T09:03:51.419354+00:00", "asset": "BTC", "event": "new_day_high", "price": 69847.0, "level_value": 69846.0}
+{"ts": "2026-02-14T09:04:51.429990+00:00", "asset": "XRP", "event": "new_day_high", "price": 1.45, "level_value": 1.45}
+{"ts": "2026-02-14T09:13:51.524923+00:00", "asset": "HYPE", "event": "broke_below", "level": "prior_day_close", "price": 31.54, "level_value": 31.558}
+{"ts": "2026-02-14T09:13:51.524923+00:00", "asset": "XRP", "event": "new_day_high", "price": 1.45, "level_value": 1.45}
+{"ts": "2026-02-14T09:19:51.588185+00:00", "asset": "HYPE", "event": "broke_above", "level": "prior_day_close", "price": 31.61, "level_value": 31.558}
+{"ts": "2026-02-14T09:19:51.588185+00:00", "asset": "XRP", "event": "new_day_high", "price": 1.45, "level_value": 1.45}
+{"ts": "2026-02-14T09:19:51.588185+00:00", "asset": "DOGE", "event": "broke_above", "level": "prior_day_high", "price": 0.1, "level_value": 0.09758}
+{"ts": "2026-02-14T09:19:51.588185+00:00", "asset": "AVAX", "event": "broke_above", "level": "prior_day_high", "price": 9.26, "level_value": 9.2555}
+{"ts": "2026-02-14T09:19:51.588185+00:00", "asset": "SUI", "event": "broke_above", "level": "prior_day_high", "price": 0.99, "level_value": 0.98432}
+{"ts": "2026-02-14T09:20:51.598741+00:00", "asset": "HYPE", "event": "broke_below", "level": "prior_day_close", "price": 31.55, "level_value": 31.558}
+{"ts": "2026-02-14T09:22:51.619819+00:00", "asset": "LINK", "event": "new_day_high", "price": 8.99, "level_value": 8.98}
+{"ts": "2026-02-14T09:22:51.619819+00:00", "asset": "AVAX", "event": "broke_above", "level": "prior_day_high", "price": 9.26, "level_value": 9.2555}
+{"ts": "2026-02-14T09:29:51.693608+00:00", "asset": "HYPE", "event": "broke_above", "level": "prior_day_close", "price": 31.56, "level_value": 31.558}
+{"ts": "2026-02-14T09:29:51.693608+00:00", "asset": "SUI", "event": "broke_above", "level": "prior_day_high", "price": 0.98, "level_value": 0.98432}
+{"ts": "2026-02-14T09:31:51.714714+00:00", "asset": "HYPE", "event": "broke_below", "level": "prior_day_close", "price": 31.55, "level_value": 31.558}
+{"ts": "2026-02-14T09:35:51.695670+00:00", "asset": "HYPE", "event": "broke_above", "level": "prior_day_close", "price": 31.58, "level_value": 31.558}
+{"ts": "2026-02-14T09:36:51.705312+00:00", "asset": "DOGE", "event": "broke_above", "level": "prior_day_high", "price": 0.1, "level_value": 0.09758}
+{"ts": "2026-02-14T09:36:51.705312+00:00", "asset": "DOGE", "event": "new_day_high", "price": 0.1, "level_value": 0.1}
+{"ts": "2026-02-14T09:37:51.714928+00:00", "asset": "XRP", "event": "new_day_high", "price": 1.46, "level_value": 1.46}
+{"ts": "2026-02-14T09:37:51.714928+00:00", "asset": "AVAX", "event": "broke_above", "level": "prior_day_high", "price": 9.26, "level_value": 9.2555}
+{"ts": "2026-02-14T09:37:51.714928+00:00", "asset": "SUI", "event": "new_day_high", "price": 0.99, "level_value": 0.99}
+{"ts": "2026-02-14T09:43:51.772696+00:00", "asset": "AVAX", "event": "broke_above", "level": "prior_day_high", "price": 9.26, "level_value": 9.2555}
+{"ts": "2026-02-14T09:45:51.791940+00:00", "asset": "AVAX", "event": "broke_above", "level": "prior_day_high", "price": 9.26, "level_value": 9.2555}
+{"ts": "2026-02-14T09:47:51.811162+00:00", "asset": "AVAX", "event": "broke_above", "level": "prior_day_high", "price": 9.26, "level_value": 9.2555}
+{"ts": "2026-02-14T09:48:51.820797+00:00", "asset": "SUI", "event": "new_day_high", "price": 0.99, "level_value": 0.99}
+{"ts": "2026-02-14T09:50:51.840041+00:00", "asset": "AVAX", "event": "broke_above", "level": "prior_day_high", "price": 9.26, "level_value": 9.2555}
+{"ts": "2026-02-14T09:51:51.849678+00:00", "asset": "DOGE", "event": "new_day_high", "price": 0.1, "level_value": 0.1}
+{"ts": "2026-02-14T09:53:51.860085+00:00", "asset": "MON", "event": "new_day_high", "price": 0.02, "level_value": 0.02}
+{"ts": "2026-02-14T09:54:51.869706+00:00", "asset": "SUI", "event": "new_day_high", "price": 0.99, "level_value": 0.99}
+{"ts": "2026-02-14T09:55:51.879349+00:00", "asset": "DOGE", "event": "new_day_high", "price": 0.1, "level_value": 0.1}
+{"ts": "2026-02-14T09:55:51.879349+00:00", "asset": "MON", "event": "broke_above", "level": "prior_day_high", "price": 0.02, "level_value": 0.023698}
+{"ts": "2026-02-14T09:56:51.888981+00:00", "asset": "AVAX", "event": "broke_above", "level": "prior_day_high", "price": 9.26, "level_value": 9.2555}
+{"ts": "2026-02-14T10:01:51.937170+00:00", "asset": "HYPE", "event": "broke_below", "level": "prior_day_close", "price": 31.52, "level_value": 31.558}
+{"ts": "2026-02-14T10:03:51.956501+00:00", "asset": "MON", "event": "broke_above", "level": "prior_day_high", "price": 0.02, "level_value": 0.023698}
+{"ts": "2026-02-14T10:05:51.983501+00:00", "asset": "MON", "event": "broke_above", "level": "prior_day_high", "price": 0.02, "level_value": 0.023698}
+{"ts": "2026-02-14T10:07:52.003199+00:00", "asset": "HYPE", "event": "broke_above", "level": "prior_day_close", "price": 31.58, "level_value": 31.558}
+{"ts": "2026-02-14T10:13:52.062323+00:00", "asset": "MON", "event": "new_day_high", "price": 0.02, "level_value": 0.02}
+{"ts": "2026-02-14T10:13:52.062323+00:00", "asset": "MON", "event": "large_move_up", "pct": 1.236, "price": 0.02}
+{"ts": "2026-02-14T10:17:52.101719+00:00", "asset": "SUI", "event": "new_day_high", "price": 0.99, "level_value": 0.99}
+{"ts": "2026-02-14T10:18:52.111581+00:00", "asset": "MON", "event": "new_day_high", "price": 0.02, "level_value": 0.02}
+{"ts": "2026-02-14T10:20:52.131299+00:00", "asset": "MON", "event": "new_day_high", "price": 0.02, "level_value": 0.02}
+{"ts": "2026-02-14T10:26:52.185858+00:00", "asset": "MON", "event": "large_move_down", "pct": -1.127, "price": 0.02}
+{"ts": "2026-02-14T10:43:52.384453+00:00", "asset": "MON", "event": "broke_above", "level": "prior_day_high", "price": 0.02, "level_value": 0.023698}
+{"ts": "2026-02-14T10:48:52.436748+00:00", "asset": "SUI", "event": "broke_above", "level": "prior_day_high", "price": 0.98, "level_value": 0.98432}
+{"ts": "2026-02-14T10:58:52.531370+00:00", "asset": "SUI", "event": "broke_above", "level": "prior_day_high", "price": 0.98, "level_value": 0.98432}
+{"ts": "2026-02-14T11:01:52.562735+00:00", "asset": "AVAX", "event": "broke_above", "level": "prior_day_high", "price": 9.26, "level_value": 9.2555}
+{"ts": "2026-02-14T11:03:52.583717+00:00", "asset": "AVAX", "event": "broke_above", "level": "prior_day_high", "price": 9.26, "level_value": 9.2555}
+{"ts": "2026-02-14T11:07:52.586937+00:00", "asset": "SUI", "event": "broke_above", "level": "prior_day_high", "price": 0.98, "level_value": 0.98432}
+{"ts": "2026-02-14T11:09:52.606559+00:00", "asset": "MON", "event": "large_move_down", "pct": -1.173, "price": 0.02}
+{"ts": "2026-02-14T11:11:52.626233+00:00", "asset": "HYPE", "event": "new_day_high", "price": 31.94, "level_value": 31.93}
+{"ts": "2026-02-14T11:11:52.626233+00:00", "asset": "DOGE", "event": "new_day_high", "price": 0.1, "level_value": 0.1}
+{"ts": "2026-02-14T11:11:52.626233+00:00", "asset": "AVAX", "event": "new_day_high", "price": 9.29, "level_value": 9.29}
+{"ts": "2026-02-14T11:12:52.636073+00:00", "asset": "BTC", "event": "new_day_high", "price": 69927.5, "level_value": 69878.0}
+{"ts": "2026-02-14T11:13:52.645899+00:00", "asset": "ETH", "event": "new_day_high", "price": 2093.05, "level_value": 2089.1}
+{"ts": "2026-02-14T11:13:52.645899+00:00", "asset": "SOL", "event": "new_day_high", "price": 86.59, "level_value": 86.35}
+{"ts": "2026-02-14T11:16:52.675583+00:00", "asset": "DOGE", "event": "new_day_high", "price": 0.1, "level_value": 0.1}
+{"ts": "2026-02-14T11:16:52.675583+00:00", "asset": "SUI", "event": "new_day_high", "price": 0.99, "level_value": 0.99}
+{"ts": "2026-02-14T11:18:52.695211+00:00", "asset": "DOGE", "event": "new_day_high", "price": 0.1, "level_value": 0.1}
+{"ts": "2026-02-14T11:18:52.695211+00:00", "asset": "AVAX", "event": "new_day_high", "price": 9.32, "level_value": 9.32}
+{"ts": "2026-02-14T11:20:52.714887+00:00", "asset": "HYPE", "event": "new_day_high", "price": 32.06, "level_value": 32.04}
+{"ts": "2026-02-14T11:20:52.714887+00:00", "asset": "LINK", "event": "new_day_high", "price": 9.0, "level_value": 8.99}
+{"ts": "2026-02-14T11:21:52.724732+00:00", "asset": "BTC", "event": "new_day_high", "price": 70411.5, "level_value": 70181.0}
+{"ts": "2026-02-14T11:21:52.724732+00:00", "asset": "ETH", "event": "new_day_high", "price": 2103.95, "level_value": 2093.8}
+{"ts": "2026-02-14T11:21:52.724732+00:00", "asset": "SOL", "event": "new_day_high", "price": 86.95, "level_value": 86.65}
+{"ts": "2026-02-14T11:21:52.724732+00:00", "asset": "XRP", "event": "new_day_high", "price": 1.46, "level_value": 1.46}
+{"ts": "2026-02-14T11:21:52.724732+00:00", "asset": "AVAX", "event": "new_day_high", "price": 9.34, "level_value": 9.32}
+{"ts": "2026-02-14T11:28:52.793490+00:00", "asset": "BTC", "event": "new_day_high", "price": 70182.0, "level_value": 70181.0}
+{"ts": "2026-02-14T11:30:52.813169+00:00", "asset": "HYPE", "event": "new_day_high", "price": 32.22, "level_value": 32.21}
+{"ts": "2026-02-14T11:43:52.959846+00:00", "asset": "MON", "event": "new_day_high", "price": 0.02, "level_value": 0.02}
+{"ts": "2026-02-14T11:45:52.980498+00:00", "asset": "MON", "event": "new_day_high", "price": 0.02, "level_value": 0.02}
+{"ts": "2026-02-14T11:46:52.990830+00:00", "asset": "MON", "event": "large_move_down", "pct": -1.165, "price": 0.02}
+{"ts": "2026-02-14T11:49:53.021799+00:00", "asset": "DOGE", "event": "new_day_high", "price": 0.1, "level_value": 0.1}
+{"ts": "2026-02-14T11:49:53.021799+00:00", "asset": "AVAX", "event": "new_day_high", "price": 9.37, "level_value": 9.37}
+{"ts": "2026-02-14T11:50:53.032124+00:00", "asset": "SUI", "event": "new_day_high", "price": 1.01, "level_value": 1.0}
+{"ts": "2026-02-14T11:53:53.063088+00:00", "asset": "SOL", "event": "new_day_high", "price": 87.13, "level_value": 87.08}
+{"ts": "2026-02-14T11:53:53.063088+00:00", "asset": "LINK", "event": "new_day_high", "price": 9.03, "level_value": 9.03}
+{"ts": "2026-02-14T11:59:53.125030+00:00", "asset": "BTC", "event": "new_day_high", "price": 70489.5, "level_value": 70455.0}
+{"ts": "2026-02-14T11:59:53.125030+00:00", "asset": "LINK", "event": "new_day_high", "price": 9.04, "level_value": 9.03}
+{"ts": "2026-02-14T12:02:53.156071+00:00", "asset": "XRP", "event": "new_day_high", "price": 1.48, "level_value": 1.47}
+{"ts": "2026-02-14T12:08:53.235241+00:00", "asset": "XRP", "event": "new_day_high", "price": 1.47, "level_value": 1.47}
+{"ts": "2026-02-14T12:11:53.259412+00:00", "asset": "SUI", "event": "new_day_high", "price": 1.01, "level_value": 1.01}
+{"ts": "2026-02-14T12:22:53.376964+00:00", "asset": "AVAX", "event": "new_day_high", "price": 9.39, "level_value": 9.39}
+{"ts": "2026-02-14T12:24:53.398376+00:00", "asset": "AVAX", "event": "new_day_high", "price": 9.39, "level_value": 9.39}
+{"ts": "2026-02-14T12:27:53.430446+00:00", "asset": "MON", "event": "broke_above", "level": "prior_day_high", "price": 0.02, "level_value": 0.023698}
+{"ts": "2026-02-14T12:46:53.569249+00:00", "asset": "HYPE", "event": "broke_below", "level": "prior_day_close", "price": 31.54, "level_value": 31.558}
+{"ts": "2026-02-14T12:50:53.608679+00:00", "asset": "HYPE", "event": "new_day_low", "price": 31.49, "level_value": 31.5}
+{"ts": "2026-02-14T12:51:53.618534+00:00", "asset": "ETH", "event": "broke_above", "level": "prior_day_high", "price": 2073.15, "level_value": 2071.1}
+{"ts": "2026-02-14T12:55:53.657965+00:00", "asset": "ETH", "event": "broke_above", "level": "prior_day_high", "price": 2073.25, "level_value": 2071.1}
+{"ts": "2026-02-14T12:56:53.659872+00:00", "asset": "HYPE", "event": "new_day_low", "price": 31.41, "level_value": 31.5}
+{"ts": "2026-02-14T13:01:53.709319+00:00", "asset": "ETH", "event": "broke_above", "level": "prior_day_high", "price": 2072.15, "level_value": 2071.1}
+{"ts": "2026-02-14T13:02:53.719194+00:00", "asset": "HYPE", "event": "new_day_low", "price": 31.35, "level_value": 31.37}
+{"ts": "2026-02-14T13:05:53.748980+00:00", "asset": "BTC", "event": "broke_above", "level": "prior_day_high", "price": 69499.5, "level_value": 69456.0}
+{"ts": "2026-02-14T13:09:53.801089+00:00", "asset": "ETH", "event": "broke_above", "level": "prior_day_high", "price": 2071.95, "level_value": 2071.1}
+{"ts": "2026-02-14T13:11:53.821607+00:00", "asset": "HYPE", "event": "new_day_low", "price": 31.35, "level_value": 31.37}
+{"ts": "2026-02-14T13:12:53.831824+00:00", "asset": "ETH", "event": "broke_above", "level": "prior_day_high", "price": 2072.35, "level_value": 2071.1}
+{"ts": "2026-02-14T13:14:53.843124+00:00", "asset": "HYPE", "event": "new_day_low", "price": 31.35, "level_value": 31.37}
+{"ts": "2026-02-14T13:18:53.884107+00:00", "asset": "BTC", "event": "new_day_low", "price": 69361.5, "level_value": 69396.0}
+{"ts": "2026-02-14T13:19:53.894335+00:00", "asset": "BTC", "event": "broke_above", "level": "prior_day_high", "price": 69466.5, "level_value": 69456.0}
+{"ts": "2026-02-14T13:21:53.914778+00:00", "asset": "BTC", "event": "new_day_low", "price": 69385.5, "level_value": 69396.0}
+{"ts": "2026-02-14T13:23:53.935217+00:00", "asset": "HYPE", "event": "new_day_low", "price": 31.07, "level_value": 31.17}
+{"ts": "2026-02-14T13:34:54.039054+00:00", "asset": "ETH", "event": "broke_above", "level": "prior_day_high", "price": 2071.25, "level_value": 2071.1}
+{"ts": "2026-02-14T13:36:54.073721+00:00", "asset": "ETH", "event": "broke_above", "level": "prior_day_high", "price": 2071.35, "level_value": 2071.1}
+{"ts": "2026-02-14T13:37:54.084534+00:00", "asset": "BTC", "event": "broke_above", "level": "prior_day_high", "price": 69462.5, "level_value": 69456.0}
+{"ts": "2026-02-14T13:38:54.095034+00:00", "asset": "SUI", "event": "broke_above", "level": "prior_day_high", "price": 0.98, "level_value": 0.98432}
+{"ts": "2026-02-14T13:46:54.173707+00:00", "asset": "BTC", "event": "broke_above", "level": "prior_day_high", "price": 69492.5, "level_value": 69456.0}
+{"ts": "2026-02-14T13:46:54.173707+00:00", "asset": "ETH", "event": "broke_above", "level": "prior_day_high", "price": 2072.75, "level_value": 2071.1}
+{"ts": "2026-02-14T14:00:54.314140+00:00", "asset": "ETH", "event": "broke_above", "level": "prior_day_high", "price": 2071.35, "level_value": 2071.1}
+{"ts": "2026-02-14T14:06:54.375216+00:00", "asset": "SUI", "event": "broke_above", "level": "prior_day_high", "price": 0.98, "level_value": 0.98432}
+{"ts": "2026-02-14T14:09:54.406585+00:00", "asset": "SUI", "event": "broke_above", "level": "prior_day_high", "price": 0.98, "level_value": 0.98432}
+{"ts": "2026-02-14T14:15:54.469344+00:00", "asset": "BTC", "event": "broke_above", "level": "prior_day_high", "price": 69476.5, "level_value": 69456.0}
+{"ts": "2026-02-14T14:15:54.469344+00:00", "asset": "DOGE", "event": "new_day_high", "price": 0.1, "level_value": 0.1}
+{"ts": "2026-02-14T14:20:54.521852+00:00", "asset": "DOGE", "event": "new_day_high", "price": 0.1, "level_value": 0.1}
+{"ts": "2026-02-14T14:25:54.574157+00:00", "asset": "DOGE", "event": "new_day_high", "price": 0.1, "level_value": 0.1}
+{"ts": "2026-02-14T14:27:54.595160+00:00", "asset": "SUI", "event": "broke_above", "level": "prior_day_high", "price": 0.98, "level_value": 0.98432}
+{"ts": "2026-02-14T14:30:54.626560+00:00", "asset": "BTC", "event": "broke_above", "level": "prior_day_high", "price": 69498.5, "level_value": 69456.0}
+{"ts": "2026-02-14T14:30:54.626560+00:00", "asset": "ETH", "event": "broke_above", "level": "prior_day_high", "price": 2072.75, "level_value": 2071.1}
+{"ts": "2026-02-14T14:30:54.626560+00:00", "asset": "DOGE", "event": "new_day_high", "price": 0.1, "level_value": 0.1}
+{"ts": "2026-02-14T14:39:54.682186+00:00", "asset": "MON", "event": "broke_above", "level": "prior_day_high", "price": 0.02, "level_value": 0.023698}
+{"ts": "2026-02-14T14:50:54.790327+00:00", "asset": "DOGE", "event": "new_day_high", "price": 0.1, "level_value": 0.1}
+{"ts": "2026-02-14T14:55:54.839481+00:00", "asset": "SOL", "event": "new_day_high", "price": 87.34, "level_value": 87.25}
+{"ts": "2026-02-14T15:19:54.967143+00:00", "asset": "SOL", "event": "new_day_high", "price": 87.48, "level_value": 87.44}
+{"ts": "2026-02-14T15:23:54.979992+00:00", "asset": "SOL", "event": "new_day_high", "price": 87.44, "level_value": 87.44}
+{"ts": "2026-02-14T15:25:54.996434+00:00", "asset": "LINK", "event": "new_day_high", "price": 9.04, "level_value": 9.04}
+{"ts": "2026-02-14T15:30:55.030278+00:00", "asset": "MON", "event": "new_day_high", "price": 0.02, "level_value": 0.02}
+{"ts": "2026-02-14T15:39:55.210972+00:00", "asset": "MON", "event": "new_day_high", "price": 0.02, "level_value": 0.02}
+{"ts": "2026-02-14T15:56:55.390150+00:00", "asset": "DOGE", "event": "new_day_high", "price": 0.1, "level_value": 0.1}
+{"ts": "2026-02-14T16:27:55.705002+00:00", "asset": "ETH", "event": "broke_above", "level": "prior_day_high", "price": 2071.85, "level_value": 2071.1}
+{"ts": "2026-02-14T16:29:55.725732+00:00", "asset": "ETH", "event": "broke_above", "level": "prior_day_high", "price": 2071.55, "level_value": 2071.1}
+{"ts": "2026-02-14T16:33:55.767165+00:00", "asset": "ETH", "event": "broke_above", "level": "prior_day_high", "price": 2072.95, "level_value": 2071.1}
+{"ts": "2026-02-14T16:33:55.767165+00:00", "asset": "SOL", "event": "new_day_high", "price": 87.67, "level_value": 87.61}
+{"ts": "2026-02-14T16:36:55.759659+00:00", "asset": "BTC", "event": "broke_above", "level": "prior_day_high", "price": 69497.5, "level_value": 69456.0}
+{"ts": "2026-02-14T16:37:55.765744+00:00", "asset": "SOL", "event": "new_day_high", "price": 87.62, "level_value": 87.61}
+{"ts": "2026-02-14T16:37:55.765744+00:00", "asset": "AVAX", "event": "new_day_high", "price": 9.4, "level_value": 9.4}
+{"ts": "2026-02-14T16:43:55.823100+00:00", "asset": "SOL", "event": "new_day_high", "price": 87.87, "level_value": 87.61}
+{"ts": "2026-02-14T16:43:55.823100+00:00", "asset": "AVAX", "event": "new_day_high", "price": 9.42, "level_value": 9.4}
+{"ts": "2026-02-14T16:49:55.880605+00:00", "asset": "SOL", "event": "new_day_high", "price": 87.95, "level_value": 87.93}
+{"ts": "2026-02-14T16:49:55.880605+00:00", "asset": "AVAX", "event": "new_day_high", "price": 9.44, "level_value": 9.43}
+{"ts": "2026-02-14T16:51:55.899793+00:00", "asset": "SOL", "event": "new_day_high", "price": 88.01, "level_value": 87.93}
+{"ts": "2026-02-14T16:51:55.899793+00:00", "asset": "DOGE", "event": "new_day_high", "price": 0.1, "level_value": 0.1}
+{"ts": "2026-02-14T16:53:55.919013+00:00", "asset": "LINK", "event": "new_day_high", "price": 9.07, "level_value": 9.04}
+{"ts": "2026-02-14T16:53:55.919013+00:00", "asset": "AVAX", "event": "new_day_high", "price": 9.44, "level_value": 9.43}
+{"ts": "2026-02-14T17:00:55.986289+00:00", "asset": "SUI", "event": "new_day_high", "price": 1.01, "level_value": 1.01}
+{"ts": "2026-02-14T17:11:56.069610+00:00", "asset": "MON", "event": "large_move_up", "pct": 1.1, "price": 0.02}
+{"ts": "2026-02-14T17:13:56.072783+00:00", "asset": "LINK", "event": "new_day_high", "price": 9.08, "level_value": 9.08}
+{"ts": "2026-02-14T17:19:56.104384+00:00", "asset": "LINK", "event": "new_day_high", "price": 9.1, "level_value": 9.09}
+{"ts": "2026-02-14T17:21:56.106011+00:00", "asset": "XRP", "event": "new_day_high", "price": 1.48, "level_value": 1.48}
+{"ts": "2026-02-14T17:21:56.106011+00:00", "asset": "DOGE", "event": "new_day_high", "price": 0.11, "level_value": 0.11}
+{"ts": "2026-02-14T17:21:56.106011+00:00", "asset": "LINK", "event": "new_day_high", "price": 9.11, "level_value": 9.09}
+{"ts": "2026-02-14T17:21:56.106011+00:00", "asset": "AVAX", "event": "new_day_high", "price": 9.48, "level_value": 9.46}
+{"ts": "2026-02-14T17:21:56.106011+00:00", "asset": "SUI", "event": "new_day_high", "price": 1.02, "level_value": 1.01}
+{"ts": "2026-02-14T17:23:56.108504+00:00", "asset": "SOL", "event": "new_day_high", "price": 88.2, "level_value": 88.16}
+{"ts": "2026-02-14T17:26:56.133566+00:00", "asset": "SOL", "event": "new_day_high", "price": 88.22, "level_value": 88.16}
+{"ts": "2026-02-14T17:31:56.156151+00:00", "asset": "AVAX", "event": "new_day_high", "price": 9.49, "level_value": 9.49}
+{"ts": "2026-02-14T17:31:56.156151+00:00", "asset": "SUI", "event": "new_day_high", "price": 1.02, "level_value": 1.02}
